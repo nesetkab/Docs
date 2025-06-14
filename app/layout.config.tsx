@@ -1,5 +1,6 @@
 import type {BaseLayoutProps} from 'fumadocs-ui/layouts/shared';
 import {GithubInfo} from "fumadocs-ui/components/github-info";
+import Discord from "@/app/Discord";
 
 /**
  * Shared layout configurations
@@ -27,5 +28,12 @@ export const baseOptions: BaseLayoutProps = {
                 <GithubInfo owner="Pedro-Pathing" repo="PedroPathing" className="lg:-mx-2"/>
             ),
         },
+        {
+            text: "Discord",
+            url: "https://discord.gg/2GfC4qBP5s",
+            icon: <Discord/>,
+            type: 'icon'
+        }
     ],
+    githubUrl: "https://github.com/Pedro-Pathing/Docs"
 };
