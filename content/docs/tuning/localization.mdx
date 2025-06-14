@@ -1,0 +1,32 @@
+---
+title: Localization
+description: Picking & Tuning a localizer
+---
+
+import {Card, Cards} from "fumadocs-ui/components/card";
+import Link from "next/link";
+
+There are many localizers for you to choose from. If you don't have any, you
+can use your drive motor encoders.
+
+All localizers except for the OTOS localizer
+use a pose exponential method of localization, a way of turning movements
+from the robot's coordinate frame to the global coordinate frame.
+
+<Cards>
+    <Card href="/docs/tuning/localizers/drive-encoder" title="Drive Encoder
+    Localizer"
+          description="A localizer that uses the drive motor encoders."/>
+    <Card href="/docs/tuning/localizers/two-wheel" title="Two Wheel
+    Localizer" description="A localizer that uses two odometry wheels."/>
+    <Card href="/docs/tuning/localizers/three-wheel"
+          title="Three Wheel Localizer"
+          description="A localizer that uses three odometry wheels."/>
+    <Card href="/docs/tuning/localizers/three-wheel-imu"
+          title="Three Wheel + IMU Localizer"
+          description="A localizer that uses three odometry wheels and an IMU."/><Card
+    href="/docs/tuning/localizers/pinpoint" title="Pinpoint Localizer"
+    description="A localizer that uses the goBILDA Pinpoint Odometry Computer."/><Card
+    href="/docs/tuning/localizers/otos" title="OTOS Localizer"
+    description="A localizer that uses the SparkFUN Optical Tracking Odometry Sensor."/>
+</Cards>

@@ -1,0 +1,36 @@
+---
+title: Overview
+description: Tuning Pedro Pathing
+---
+
+import {Step, Steps} from "fumadocs-ui/components/steps";
+import Link from "next/link";
+
+Tuning Pedro Pathing has four steps:
+
+<Steps>
+    <Step>
+        <h3><Link href="/docs/tuning/localization">Localization</Link></h3>
+
+        This allows for your robot to know its location on the field.
+    </Step>
+    <Step>
+        <h3><Link href="/docs/tuning/automatic">Automatic Tuners</Link></h3>
+
+        These tuners consist of running four OpModes that determine
+        constants specific to your robot.
+    </Step>
+    <Step>
+        <h3><Link href="/docs/tuning/pids">PID Tuners</Link></h3>
+
+        This step is where you tune 3-6 PID controllers, translational,
+        heading, and drive.
+    </Step>
+    <Step>
+        <h3><Link href="/docs/tuning/centripetal">Centripetal Force
+            Tuner</Link></h3>
+
+        This step consists of tuning a constant that accounts for
+        centripetal force.
+    </Step>
+</Steps>
