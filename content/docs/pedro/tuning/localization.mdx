@@ -4,7 +4,8 @@ description: Picking & Tuning a localizer
 ---
 
 import {Card, Cards} from "fumadocs-ui/components/card";
-import Link from "next/link";
+import {Callout} from "fumadocs-ui/components/callout";
+
 
 There are many localizers for you to choose from. If you don't have any, you
 can use your drive motor encoders.
@@ -12,6 +13,11 @@ can use your drive motor encoders.
 All localizers except for the OTOS localizer
 use a pose exponential method of localization, a way of turning movements
 from the robot's coordinate frame to the global coordinate frame.
+
+## Localizers
+
+**Select your localizer below and follow the instructions to tune it. Once
+your localizer is tuned, come back to this page.**
 
 <Cards>
     <Card href="/docs/tuning/localizers/drive-encoder" title="Drive Encoder
@@ -28,5 +34,19 @@ from the robot's coordinate frame to the global coordinate frame.
     href="/docs/tuning/localizers/pinpoint" title="Pinpoint Localizer"
     description="A localizer that uses the goBILDA Pinpoint Odometry Computer."/><Card
     href="/docs/tuning/localizers/otos" title="OTOS Localizer"
-    description="A localizer that uses the SparkFUN Optical Tracking Odometry Sensor."/>
+    description="A localizer that uses the SparkFun Optical Tracking Odometry
+    Sensor."/>
 </Cards>
+
+## Localization Test
+
+*TODO*
+
+Cover:
+
+- How to run `LocalizationTest`
+- What `LocalizationTest` should do (what direction driving should
+move in, whether moving forward should be positive or negative, etc.)
+- If you spin the robot in a circle, it should spin around a point on the
+dashboard
+- Say "if it's not working go to the troubleshooting page [insert link]"

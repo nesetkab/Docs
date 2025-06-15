@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "index",
+    "installation",
+    "migrating",
+    "constants",
+    "tuning",
+    "faq",
+    "---Reference---",
+    "...(reference)",
+    "---Examples---",
+    "...examples"
+  ],
+  "root": true,
+  "title": "Pedro Pathing",
+  "description": "Learn to use Pedro"
+}
