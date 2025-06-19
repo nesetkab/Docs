@@ -1,0 +1,22 @@
+---
+title: Path Constraints
+description: Methods in the Path Class that allow you to control the robot's heading interpolation and end path behavior. 
+---
+
+### `setPathEndTimeoutConstraint(double set)` 
+Sets how long, **in milliseconds,** the follower has to correct after reaching the end of the path. Increasing it will give the robot more time to correct at the end of the path to improve its accuracy. Decreasing it will reduce the robot's wait time between following paths, but may cause the path following to be slightly more inaccurate. 
+	
+### `setPathEndTValueConstraint(double set)`
+Sets the path's parametric end criteria, or how much of the path the robot must follow before it is considered complete. `set` should be a double between 0.0 and 1.0, and by default it is 0.995. 
+	
+**Tip:** If the robot gets stuck after reaching the end of the path and is unable to continue following the next one, the follower likely thinks that it is not done following the path. Try decreasing the T value constraint for that path. 
+	
+### `setLinearHeadingInterpolation(double startHeading, double endHeading, double endTime)`
+This will cause the robot to turn from `startHeading` to `endHeading` while it is following the path. 
+	
+The `endTime` parameter is a double between 0.0 and 1.0, and it specifies when the robot should finish turning to endHeading. Setting `endTime` to somewhere around 0.8 should work well for most paths. Setting endTime too low will cause the robot to turn too quickly and create too many oscillations, while setting it too high may lower the robot's end heading accuracy. 
+	
+### `setConstantHeadingInterpolation(double setHeading)` 
+Causes the robot to maintain a constant heading while following the path. 
+	
+**Warning:** startHeading and endHeading must be in **radians!** To convert degrees to radians, use `Math.toRadians(degrees)`. 
