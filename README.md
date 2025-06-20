@@ -1,3 +1,6 @@
+# NOTICE
+THESE DOCS ARE 1.1.0+ PEDRO ONLY, THEY ARE NOT MEANT FOR <=1.0.9
+
 # pedro-pathing-docs
 
 This is a Next.js application generated with
