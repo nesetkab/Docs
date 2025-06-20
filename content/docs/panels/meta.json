@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "index",
+    "setup",
+    "changelog",
+    "futureplans",
+    "---Core---",
+    "...core",
+    "---Plugins---",
+    "...plugins",
+    "---Extras---",
+    "...extras"
+  ],
+  "root": true,
+  "title": "Panels",
+  "description": "Learn to use Panels"
+}

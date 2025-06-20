@@ -1,0 +1,12 @@
+{
+  "pages": [
+    "overview",
+    "customization",
+    "opmode",
+    "telemetry",
+    "field",
+    "graph",
+    "capture",
+    "configurables"
+  ]
+}

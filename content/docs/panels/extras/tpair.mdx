@@ -1,0 +1,50 @@
+---
+title: TPair
+---
+
+TPair  is a utility class in the ftcontrol library for mapping configurable key-value pairs  between two types, commonly used for robotic mechanism position control (e.g., mapping states like OPENED/CLOSED to servo positions). 
+
+### Key Features 
+1. Maps semantic states  (e.g., Enum) to numeric/digital values  (e.g., Double, Boolean)
+2. Supports runtime configuration  via the ftcontrol UI
+3. Provides a default fallback value  for unmatched keys
+
+Use `@GenericValue(KeyType::class, ValueType::class)` to preserve type information at runtime (required due to Kotlin type erasure):
+Use `val currentPosition = poses.get()` to access current value.
+
+---
+
+```kotlin
+package org.firstinspires.ftc.teamcode.examples.configurables
+
+import com.bylazar.ftcontrol.panels.configurables.TPair
+import com.bylazar.ftcontrol.panels.configurables.annotations.Configurable
+import com.bylazar.ftcontrol.panels.configurables.annotations.GenericValue
+
+@Configurable
+object ClawConfig {
+    enum class State {
+        OPENED,
+        CLOSED,
+        AJAR
+    }
+
+    @JvmField
+    var state: State = State.OPENED
+
+    @field:GenericValue(State::class, Double::class)
+    @JvmField
+    var poses = TPair({ state }) {
+        pair(State.OPENED, 0.0)
+        pair(State.CLOSED, 1.0)
+        pair(State.AJAR, 0.5)
+
+        default(0.5)
+    }
+
+    val clawPos = poses()
+    val openedPos = poses.getStateValue(State.OPENED)
+}
+```
+
+<img src="/docs/tpair.png"/>
