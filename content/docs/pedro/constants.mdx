@@ -19,46 +19,17 @@ offset.
 There is also a `createFollower` method that constructs the follower. You
 will call this method in your OpModes.
 
-Below is an example `Constants` file. The different tuning pages will guide
+Below is a starting `Constants` file. The different tuning pages will guide
 you through modifying it to suit your robot.
 
 ```java title="Constants.java"
 public class Constants {
-    public static FollowerConstants followerConstants = new FollowerConstants()
-            .centripetalScaling(0.005)
-            .forwardZeroPowerAcceleration(-41.278)
-            .lateralZeroPowerAcceleration(-59.7819)
-            .translationalPIDFCoefficients(new PIDFCoefficients(0.1,0,0.01,0))
-            .headingPIDFCoefficients(new PIDFCoefficients(2,0,0.1,0))
-            .drivePIDFCoefficients(new FilteredPIDFCoefficients(0.1,0,0,0.6,0))
-            .mass(5);
-
-    public static MecanumConstants driveConstants = new MecanumConstants()
-            .xMovement(57.8741)
-            .yMovement(52.295)
-            .maxPower(1)
-            .leftFrontMotorName("lf")
-            .leftFrontMotorDirection(DcMotorSimple.Direction.REVERSE)
-            .leftRearMotorDirection(DcMotorSimple.Direction.REVERSE)
-            .rightFrontMotorDirection(DcMotorSimple.Direction.FORWARD)
-            .rightRearMotorDirection(DcMotorSimple.Direction.FORWARD)
-            .motorCachingThreshold(0.01)
-            .useBrakeModeInTeleOp(false);
-
-    public static PinpointConstants pinpointConstants = new PinpointConstants()
-            .forwardY(-5)
-            .strafeX(0.5)
-            .distanceUnit(DistanceUnit.INCH)
-            .hardwareMapName("pinpoint")
-            .encoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD)
-            .forwardEncoderDirection(GoBildaPinpointDriver.EncoderDirection.REVERSED);
+    public static FollowerConstants followerConstants = new FollowerConstants();
 
     public static PathConstraints pathConstraints = new PathConstraints(0.99, 100, 3, 1);
 
     public static Follower createFollower(HardwareMap hardwareMap) {
         return new FollowerBuilder(followerConstants, hardwareMap)
-                .mecanumDrivetrain(driveConstants)
-                .pinpointLocalizer(pinpointConstants)
                 .pathConstraints(pathConstraints)
                 .build();
     }
