@@ -1,5 +1,10 @@
 import {DynamicCodeBlock} from "fumadocs-ui/components/dynamic-codeblock";
 import Link from "next/link";
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: "Pedro Pathing"
+}
 
 export default function HomePage() {
 
