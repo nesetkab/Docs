@@ -11,19 +11,22 @@ The translational PID ensures the robot follows a straight path without lateral 
 
 1. Open FTC Dashboard (http://192.168.43.1:8080/dash) and go to the **Follower** tab under the **Configuration** section.
 2. Enable `useTranslational` and disable all other checkboxes. **Make sure to click "save"** after any modifications you make through Dashboard. 
-![translationalPIDF](../../../../images/DashboardFollower.png)
 3. Run the StraightBackAndForth autonomous OpMode.
 4. Ensure the timer for autonomous OpModes is **disabled.** Otherwise, the OpMode will automatically stop after 30 seconds.
 
 **Note that while running the StraightBackAndForth OpMode, the robot will stay in place. This is intentional.**
 
 ### Tuning Process
+Follow this video to help you tune the PID: 
+<iframe width="560" height="315" 
+src="https://www.youtube.com/embed/Vy-lpPFCJj8?si=4CQ_66QmWt7hk4Zb" 
+title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; 
+clipboard-write; encrypted-media; gyroscope; picture-in-picture; 
+web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
 1. Push the robot left or right at varying amounts and observe how the robot corrects back to its starting position. 
 2. Adjust the PID constants (`translationalPIDFCoefficients`) in the FollowerConstants tab of FTC Dashboard to ensure that the robot can **accurately correct** back to its starting position with **minimal oscillations.** For example, if the robot has too many oscillations while correcting back to its starting position, lower the P value. On the other hand, if the robot corrects back to its starting location too slowly, increase the P value. 
 **If you do not have prior experience with tuning PIDs, we reccommend that you check out the resources provided at the bottom of the PID Tuners page to learn more about tuning PIDs.**
-
-![translationalPIDF](../../../../images/DashboardTranslational.png)
 
 **If you have a dual PID system enabled,** it is recommended to first tune the main PID, `translationalPIDFCoefficients`, to ensure that the robot can smoothly correct from large errors. Then, tune the secondary PID, `secondaryTranslationalPIDFCoefficients`, so the robot can smoothly correct from smaller errors. 
 
