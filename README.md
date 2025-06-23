@@ -5,7 +5,7 @@ THESE DOCS ARE 1.1.0+ PEDRO ONLY, THEY ARE NOT MEANT FOR <=1.0.9
 
 To locally build, run:
 
-```bash
+```bash 
 npm install
 npm run dev
 ```
