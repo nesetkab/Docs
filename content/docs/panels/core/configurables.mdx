@@ -2,6 +2,8 @@
 title: Configurables
 ---
 
+import Image from 'next/image'
+
 Configurables are runtime-modifiable variables that make *testing*, *tuning*, and *debugging* robot behavior easier without needing to recompile or reupload your code. You can think of them as live sliders or inputs exposed to your Panels Dashboard.
 
 The Configurables Widget also supports search functionality.
@@ -24,7 +26,7 @@ Useful for things like:
 
 ### Configurables UI Features
 
-<img src="/docs/configurables_ui.png"/>
+<Image src="/docs/configurables_ui.png"/>
 
 1. *Update current variable* – You can also use `ENTER` on supported types to update.
 2. *Update all modified variables* – Apply changes to all variables that have been modified.
@@ -344,7 +346,7 @@ var testRandomArray = arrayOf(
 ```
 Note: only supported types will render correctly on the dashboard.
 
-<img src="/docs/configurables_random_array.png"/>
+<Image src="/docs/configurables_random_array.png"/>
 ---
 
 ### Best Practices

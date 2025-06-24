@@ -1,6 +1,7 @@
 import type {BaseLayoutProps} from 'fumadocs-ui/layouts/shared';
 import {GithubInfo} from "fumadocs-ui/components/github-info";
 import Discord from "@/app/Discord";
+import Image from "next/image";
 
 /**
  * Shared layout configurations
@@ -13,8 +14,8 @@ export const baseOptions: BaseLayoutProps = {
     nav: {
         title: (
             <>
-                <img className="size-10 dark:hidden" src="/logo-light.png" alt="Pedro Pathing Logo"/>
-                <img className="size-10 hidden dark:inline" src="/logo.png" alt="Pedro Pathing Logo"/>
+                <Image className="size-10 dark:hidden" src="/logo-light.png" alt="Pedro Pathing Logo"/>
+                <Image className="size-10 hidden dark:inline" src="/logo.png" alt="Pedro Pathing Logo"/>
 
                 <span>Pedro Pathing</span>
             </>

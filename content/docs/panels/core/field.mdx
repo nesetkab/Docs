@@ -2,6 +2,8 @@
 title: Field View
 ---
 
+import Image from 'next/image'
+
 It provides a dynamic and interactive visualization of the game field, allowing teams to monitor their robot's position, orientation, and interactions with game elements in real-time. This feature is particularly useful for debugging autonomous flows, tracking robot movements.
 
 It works live a canvas, so it can be used for any drawing application.
@@ -17,7 +19,7 @@ More will be added soon
 You can change the orientation and show a coordinates grid inside the `settings menu`.
 There are also methods on the `Canvas` object to change the orientation programatically: `setOffsets`.
 
-<img src="/docs/field_settings.png" alt="field settings"/>
+<Image src="/docs/field_settings.png" alt="field settings"/>
 
 ### Gotchas
 1. Objects are drawn in the order they are sent to the `debug` function, and their layering (z-index) is automatically managed by the system.
