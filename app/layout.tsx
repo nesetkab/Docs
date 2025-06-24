@@ -12,7 +12,7 @@ const inter = Inter({
 
 export const metadata = {
     icons: {
-        icon: '/favicon.ico'
+        icon: `${process.env.BASE_PATH}/favicon.ico`
     }
 }
 
