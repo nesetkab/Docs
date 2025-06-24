@@ -2,7 +2,7 @@
 title: TPair
 ---
 
-import Image from 'next/image'
+
 import {useRouter} from 'next/navigation'
 
 TPair  is a utility class in the ftcontrol library for mapping configurable key-value pairs  between two types, commonly used for robotic mechanism position control (e.g., mapping states like OPENED/CLOSED to servo positions). 
@@ -50,4 +50,4 @@ object ClawConfig {
 }
 ```
 
-<Image src={`${useRouter().basePath}/docs/tpair.png`}/>
+<img src={`${process.env.BASE_PATH}/docs/tpair.png`}/>

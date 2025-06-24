@@ -2,8 +2,8 @@
 title: Field View
 ---
 
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+
+
 
 It provides a dynamic and interactive visualization of the game field, allowing teams to monitor their robot's position, orientation, and interactions with game elements in real-time. This feature is particularly useful for debugging autonomous flows, tracking robot movements.
 
@@ -20,7 +20,7 @@ More will be added soon
 You can change the orientation and show a coordinates grid inside the `settings menu`.
 There are also methods on the `Canvas` object to change the orientation programatically: `setOffsets`.
 
-<Image src={`${useRouter().basePath}/docs/field_settings.png`} alt="field
+<img src={`${process.env.BASE_PATH}/docs/field_settings.png`} alt="field
   settings"/>
 
 ### Gotchas

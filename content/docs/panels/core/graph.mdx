@@ -2,8 +2,7 @@
 title: Graph View
 ---
 
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+
 
 The Graph View allows you to plot telemetry data as graphs, making it easier to understand trends, patterns, and anomalies in your robot's performance. It supports multiple data series and time scaling.
 
@@ -98,7 +97,7 @@ panelsTelemetry.graph(
 
 ### Using the Graph View Interface 
 
-<Image src={`${useRouter().basePath}/docs/graph.png`}/>
+<img src={`${process.env.BASE_PATH}/docs/graph.png`}/>
 
 #### Selecting Data Series  
 - On the left side of the Graph View, you will see a list of available telemetry keys.
