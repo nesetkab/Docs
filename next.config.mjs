@@ -7,7 +7,10 @@ const config = {
   reactStrictMode: true,
   devIndicators: false,
   output: "export",
-  basePath: "/Docs"
+  basePath: "/Docs",
+  images: {
+    unoptimized: true
+  }
 };
 
 export default withMDX(config);
