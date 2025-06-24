@@ -5,7 +5,9 @@ const withMDX = createMDX();
 /** @type {import('next').NextConfig} */
 const config = {
   reactStrictMode: true,
-  devIndicators: false
+  devIndicators: false,
+  output: "export",
+  basePath: "/Docs"
 };
 
 export default withMDX(config);
