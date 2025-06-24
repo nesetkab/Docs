@@ -3,6 +3,7 @@ title: Overview
 ---
 
 import Image from 'next/image'
+import {useRouter} from 'next/router'
 
 ### Accessing the Dashboard
 
@@ -29,7 +30,7 @@ import AutoplayVideo from '@/components/AutoplayVideo';
 
 <AutoplayVideo src="/docs/pwa.mp4" />
 
-<Image src="/docs/pwa.png"/>
+<Image src={`${useRouter().basePath}/docs/pwa.png`}/>
 
 ### Quick Tip
 To scroll horizontally within a container, hold down **Shift** and scroll using the mouse wheel.

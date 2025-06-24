@@ -3,6 +3,8 @@ title: Field View
 ---
 
 import Image from 'next/image'
+import { useRouter } from 'next/router'
+
 
 It is a powerful tool designed to record and replay matches for debugging purposes. This feature allows users to analyze robot performance, identify issues, and optimize strategies by reviewing recorded match data. It supports Telemetry, Graph and Field Recordings.
 
@@ -12,7 +14,7 @@ import AutoplayVideo from '@/components/AutoplayVideo';
 <AutoplayVideo src="/docs/capture_example.mp4" />
 
 ### List of Controls
-<Image src="/docs/capture.png" />
+<Image src={`${useRouter().basePath}/docs/capture.png`} />
 
 - `Start`: Begins capturing data points and telemetry information during the match.
 - `Stop`: Stops the data capturing process. This button should be clicked once the desired events have been recorded.

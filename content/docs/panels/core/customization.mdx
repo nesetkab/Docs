@@ -2,6 +2,7 @@
 title: Customization
 ---
 
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 
 Panels offers a customizable control grid for easier and more flexible management of your robot systems and tools.
@@ -67,8 +68,8 @@ How to fix:
 2. Find the Presets section.
 3. Reset all presets. (This will delete all your current layouts.)
 
-<Image src="/docs/customization_ids.png"/>
+<Image src={`${useRouter().basePath}/docs/customization_ids.png`}/>
 
 Alternative fix: delete the `presets` cookie.
 
-<Image src="/docs/cookies.png"/>
+<Image src={`${useRouter().basePath}/docs/cookies.png`}/>
