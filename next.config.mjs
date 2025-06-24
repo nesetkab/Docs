@@ -7,7 +7,7 @@ const config = {
   reactStrictMode: true,
   devIndicators: false,
   output: "export",
-  basePath: "/Docs/"
+  basePath: "/Docs"
 };
 
 export default withMDX(config);
