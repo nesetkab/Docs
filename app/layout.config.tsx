@@ -2,7 +2,7 @@ import type {BaseLayoutProps} from 'fumadocs-ui/layouts/shared';
 import {GithubInfo} from "fumadocs-ui/components/github-info";
 import Discord from "@/app/Discord";
 import Image from "next/image";
-import {useRouter} from "next/router";
+import {useRouter} from "next/navigation";
 
 /**
  * Shared layout configurations
