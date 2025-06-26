@@ -3,6 +3,8 @@ title: Two Wheel
 description: A localizer that uses two odometry wheels
 ---
 
+import {Accordions, Accordion} from "fumadocs-ui/components/accordion";
+
 ### Prerequisites
 1. Two odometry wheels connected to motor encoder ports on a hub. One odometry wheel should be **parallel** to your robot's wheels, while the other should be **perpendicular** the the robot's wheels. 
 2. A properly configured IMU. 
@@ -115,5 +117,20 @@ Switch the view to "field view" from the top right corner dropdown.
 The dashboard should display the robot's position on the field.
 
 Observe the movements. Moving the robot **forward** should make **x increase** and strafing **left** should make **y increase.**
+
+Here are some common issues that you may face if your localization isn't working: 
+
+<Accordions type="single">
+    <Accordion title="Heading is very off / moving the robot forward causes the heading to change dramatically">
+        Double check the IMU orientations you configured. Often, an incorrect IMU orientation can also cause the reported x and y values to be incorrect. 
+    </Accordion>
+    <Accordion title="The reported x or y values are the opposite of what it should be">
+        - If this happens in the x-direction, try reversing your forward encoder's direction. 
+        - If this happens in the y-direction, try reversing your strafe encoder's direction. 
+    </Accordion>
+    <Accordion title="The x and y values are flipped">
+        Double check whether the forward and strafe configurations are flipped. 
+    </Accordion>
+</Accordions>
 
 Congratulations on successfully tuning your localizer!

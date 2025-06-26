@@ -20,4 +20,16 @@ Use the following format:
     <Accordion title="PID not PIDing">
         skill issue
     </Accordion>
+    <Accordion title="Robot never stops while running Straight Back and Forth or moves the wrong direction">
+        **Check if:** 
+        - Your localization is inaccurate. Run `LocalizationTest` and check: 
+            - when you move the robot forward, does the x-value increase?
+            - when you move the robot to the left, does the y-value increase?
+            - is the reported heading accurate?
+        If not, head over back to the localization section and double check your steps. Ensure that your localization is fully accurate before tuning your PIDs and running automatic tuners. 
+        - Your motor directions are reversed. 
+    </Accordion>
+    <Accordion title="Robot never moves during Straight Back and Forth">
+        **If you are tuning for Translational or Heading PID, this is intentional and there is nothing wrong.**
+    </Accordion>
 </Accordions>
