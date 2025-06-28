@@ -3,7 +3,57 @@ title: Drive
 description: Tuning the drive PID
 ---
 
-*TODO*
+### Purpose
 
-Cover:
-- Say "if it's not working go to the troubleshooting page [insert link]"
+The drive PID manages acceleration and braking along a path, ensuring smooth motion and minimizing overshoot.
+
+### Setup 
+
+1. Open Panels. If you haven't used Panels before, you can read their documentation on this website.
+2. On your Driver Hub or Driver Station, select the `Tuning` Opmode and then choose `DriveTuner`. 
+3. Ensure that the timer for autonomous OpModes is **disabled.** Otherwise, the OpMode will automatically stop after 30 seconds.
+4. Run the run the `DriveTuner` autonomous OpMode.
+
+**WARNING: Immediately after runnin the `DriveTuner` Opmode, the robot will move straight back and forth 40 inches. Make sure you have enough space before running this opmode.**
+You can adjust the distance the robot drives back and forth through Panels. 
+
+### Tuning Process
+Follow this video to help you tune the PID: 
+TODO: THIS WILL NEED TO BE UPDATED LATER
+
+### Setting the Zero Power Acceleration 
+
+Go to the line `public static PathConstraints pathConstraints = new PathConstraints(0.99, 100, 3, 1);`. If for some reason you don't have it, feel free to add it in. The third number in `new PathConstraints(0.99, 100, 3, 1)` is your **zero power acceleration multiplier (ZPAM).** The ZPAM affects the speed of your robot's deceleration at the end of a path. 
+    - Higher ZPAMs will allow your robot to have faster braking at the end of the path, but at the cost of more oscillations and a less accurate localization. 
+    - Lower ZPAMs will cause your robot to have slower, but smoother braking at the end of the path, reducing oscillations. 
+
+The ZPAM should ideally be somewhere between 2 to 8. 
+
+The ZPAM you set in the `Constants` class will be the default ZPAM for all paths the robot follows. 
+
+**Note: You can set ZPAMs individually for specific paths using the `setZeroPowerAccelerationMultiplier()` method on a Path.**
+
+TODO: Go through this process in more detail
+
+1. Observe how the robot moves back and forth through its path. 
+2. Adjust the PID constants (`drivePIDFCoefficients`) in the FollowerConstants tab of Panels to ensure that the robot accurately drive straight back and forth with minimal oscillations. 
+**If you do not have prior experience with tuning PIDs, we reccommend that you check out the resources provided at the bottom of the PID Tuners page to learn more about tuning PIDs.**
+
+**If you have a dual PID system enabled,** it is recommended to first tune the main PID, `drivePIDFCoefficients`, to ensure that the robot can smoothly correct back from large errors. Then, tune the secondary PID, `secondaryDrivePIDFCoefficients`, so the robot can smoothly correct from smaller errors. 
+
+**Warning:** After adjusting a value in Panels, **hit "enter"** in order to save it and cause the robot to correct differently. However, any values you modify through Panels **are not saved into your code!** In order to transfer the values you just tuned on Panels into your code, go to the **Update Tuned Values** section to learn more.  
+
+### Feedforward Adjustments (Optional)
+
+If additional feedforward is needed, use `drivePIDFFeedForward` for corrections in the robot’s movement direction. Avoid modifying the feedforward term directly in the PIDF.
+
+### Update Tuned values Into Your Code
+1. Once you are satisfied with your drivePIDF values, head over to the `Constants` file. 
+2. Navigate to the line `.drivePIDFCoefficients(new PIDFCoefficients(0.1, 0, 0.01, 0))` 
+3. Update the parameters in `new PIDFCoefficients(0.1, 0, 0.01, 0)` with the `drivePIDFCoefficients` values, `P, I, D, F`, you tuned on Panels in that order. 
+4. If you are using the dual PID system, **add the line** `.secondaryDrivePIDFCoefficients(new PIDFCoefficients(0.1,0,0.01,0))` and update the `secondaryDrivePIDF` values you tuned on Panels. 
+
+### Congratulations, you’ve completed the drive PIDF tuning!
+
+### Troubleshooting
+If you encounter a problem while tuning the drive PID, check out the troubleshooting page. 

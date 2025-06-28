@@ -9,12 +9,13 @@ The translational PID ensures the robot follows a straight path without lateral 
 
 ### Setup 
 
-1. Open FTC Dashboard (http://192.168.43.1:8080/dash) and go to the **Follower** tab under the **Configuration** section.
-2. Enable `useTranslational` and disable all other checkboxes. **Make sure to click "save"** after any modifications you make through Dashboard. 
-3. Run the StraightBackAndForth autonomous OpMode.
-4. Ensure the timer for autonomous OpModes is **disabled.** Otherwise, the OpMode will automatically stop after 30 seconds.
+1. Open Panels. If you haven't used Panels before, you can read their documentation on the "Panels" tab of this website.
+2. On your Driver Hub or Driver Station, and connect a gamepad to it. Make sure to press "start" + "a" on the gamepad. 
+3. Select the `Tuning` Opmode. Use your gamepad to select `Manual`. Then, select `Translational`. 
+4. Ensure that the timer for autonomous OpModes is **disabled.** Otherwise, the OpMode will automatically stop after 30 seconds.
+5. Run the run the `Translational` tuner autonomous OpMode.
 
-**Note that while running the StraightBackAndForth OpMode, the robot will stay in place. This is intentional.**
+**Note that while running the `TranslationalTuner` OpMode, the robot will stay in place. This is intentional.**
 
 ### Tuning Process
 Follow this video to help you tune the PID: 
@@ -25,14 +26,14 @@ clipboard-write; encrypted-media; gyroscope; picture-in-picture;
 web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
 1. Push the robot left or right at varying amounts and observe how the robot corrects back to its starting position. 
-2. Adjust the PID constants (`translationalPIDFCoefficients`) in the FollowerConstants tab of FTC Dashboard to ensure that the robot can **accurately correct** back to its starting position with **minimal oscillations.** For example, if the robot has too many oscillations while correcting back to its starting position, lower the P value. On the other hand, if the robot corrects back to its starting location too slowly, increase the P value. 
+2. Adjust the PID constants (`translationalPIDFCoefficients`) in the FollowerConstants tab of Panels to ensure that the robot can **accurately correct** back to its starting position with **minimal oscillations.** For example, if the robot has too many oscillations while correcting back to its starting position, lower the P value. On the other hand, if the robot corrects back to its starting location too slowly, increase the P value. 
 **If you do not have prior experience with tuning PIDs, we reccommend that you check out the resources provided at the bottom of the PID Tuners page to learn more about tuning PIDs.**
 
 **If you have a dual PID system enabled,** it is recommended to first tune the main PID, `translationalPIDFCoefficients`, to ensure that the robot can smoothly correct from large errors. Then, tune the secondary PID, `secondaryTranslationalPIDFCoefficients`, so the robot can smoothly correct from smaller errors. 
 
 **Note:** Don't worry if the robot doesn't correct its heading. We are only tuning for the translational PID: whether the robot corrects left/right appropriately. 
 
-**Warning:** After adjusting a value in Dashboard, **hit "enter"** in order to save it and cause the robot to correct differently. However, any values you modify through dashboard **are not saved into your code!** In order to transfer the values you just tuned on Dashboard into your code, go to the **Update Tuned Values** section to learn more.  
+**Warning:** After adjusting a value in Panels, **hit "enter"** in order to save it and cause the robot to correct differently. However, any values you modify through Panels **are not saved into your code!** In order to transfer the values you just tuned on Panels into your code, go to the **Update Tuned Values** section to learn more.  
 
 ### Feedforward Adjustments (Optional)
 
@@ -41,8 +42,8 @@ If additional feedforward is needed, use `translationalPIDFFeedForward` for corr
 ### Update Tuned values Into Your Code
 1. Once you are satisfied with your translationalPIDF values, head over to the `Constants` file. 
 2. Navigate to the line `.translationalPIDFCoefficients(new PIDFCoefficients(0.1, 0, 0.01, 0))` 
-3. Update the parameters in `new PIDFCoefficients(0.1, 0, 0.01, 0)` with the `translationalPIDFCoefficients` values, `P, I, D, F`, you tuned on Dashboard in that order. 
-4. If you are using the dual PID system, **add the line** `.secondaryTranslationalPIDFCoefficients(new PIDFCoefficients(0.1,0,0.01,0))` and update the `secondaryTranslationalPIDF` values you tuned on Dashboard. 
+3. Update the parameters in `new PIDFCoefficients(0.1, 0, 0.01, 0)` with the `translationalPIDFCoefficients` values, `P, I, D, F`, you tuned on Panels in that order. 
+4. If you are using the dual PID system, **add the line** `.secondaryTranslationalPIDFCoefficients(new PIDFCoefficients(0.1,0,0.01,0))` and update the `secondaryTranslationalPIDF` values you tuned on Panels. 
 
 ### Congratulations, you’ve completed the translational PIDF tuning!
 
