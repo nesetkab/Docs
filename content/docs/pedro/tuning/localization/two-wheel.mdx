@@ -27,7 +27,7 @@ These are the default values of the TwoWheelConstants. Copy and paste this into 
             .IMU_Orientation(new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.UP, RevHubOrientationOnRobot.UsbFacingDirection.LEFT));
 ```
 
-### Steps
+## Steps
 
 ### 1. Switch to having a `twoWheelLocalizer` in the `createFollower` method.
 - In the `createFollower` method, make sure that the `FollowerBuilder` returned has the desired `twoWheelLocalizer`.
@@ -35,91 +35,106 @@ These are the default values of the TwoWheelConstants. Copy and paste this into 
     public static Follower createFollower(HardwareMap hardwareMap) {
         return new FollowerBuilder(followerConstants, hardwareMap)
                 .mecanumDrivetrain(driveConstants)
-                .twoWheelLocalizer(twoWheelConstants)
+                .twoWheelLocalizer(twoWheelConstants) // Add this line
                 .pathConstraints(pathConstraints)
                 .build();
     }
 ```    
 
-### 1. Odometry Wheel Setup
+### 2. Odometry Wheel Setup
 Open the file `Constants` and navigate to `TwoWheelConstants`. Configure the following:
 
-#### Encoder Ports:
-- Replace the `forwardEncoder_HardwareMapName` and `strafeEncoder_HardwareMapName` with the names of the ports connected to your encoders (odometry).
+#### a. Encoder Ports:
+Replace the `forwardEncoder_HardwareMapName` and `strafeEncoder_HardwareMapName` with the names of the ports connected to your encoders (odometry).
 The names will match the hardware map names of the motor port that they are connected to.
+
 - The `forwardEncoder_HarwareMapName` should be the name of the port connected to the odometry pod **parallel** to your wheels. 
 - The `strafeEncoder_HardwareMapName` should be the name of the port connected to the odometry pod **perpendicular** to your wheels.
 
-#### Odometry Measurements:
-- Input the `forwardY` and `strafeX` values.
-- These values represent the distance of the odometry wheels from the robot's center of rotation on the robot coordinate grid **in inches.**
-- Use this diagram to find the signs these distances. This view is from the **top of the robot looking downwards.**
-
-![odometry](public/docs/odometry.png)
-
-#### Encoder Directions:
-- The Encoder Directions can be changed by switching between `Encoder.REVERSE` and `Encoder.FORWARD` for `forwardEncoderDirection` or `strafeEncoderDirection`.
-- Run the `Localization Test` and observe the encoder values. 
-- If the x value ticks down when the robot moves forward, reverse the direction of the forward pod.
-- If the y value ticks down when the robot moves left, reverse the direction of the strafe pod.
-#### IMU Setup:
+#### b. IMU Setup:
 - Replace the `IMU_HardwareMapName` with the name of the configuration for your IMU.
 - **Note:** Make sure that if you are using the control hub's built-in IMU, you have it configured to **port 0** on the **control hub**.
 - Define the orientation of the IMU on the robot by changing the `RevHubOrientationOnRobot` value for `IMU_Orientation`. 
 - Refer to [this resource](https://ftc-docs.firstinspires.org/en/latest/programming_resources/imu/imu.html?highlight=imu#physical-hub-mounting) to determine your IMU's `LogoFacingDirection` and `UsbFacingDirection`.
 
-### 2. Localizer Tuning
+#### c. Odometry Measurements:
+- Input the `forwardY` and `strafeX` values.
+- These values represent the distance of the odometry wheels from the robot's center of rotation on the robot coordinate grid **in inches.**
+- Use this diagram to find the signs these distances. This view is from the **top of the robot looking downwards.**
+
+// REMOVED THE DIAGRAM TEMPORARILY
+
+#### d. Encoder Directions:
+The Encoder Directions can be changed by switching between `Encoder.REVERSE` and `Encoder.FORWARD` for `forwardEncoderDirection` or `strafeEncoderDirection`.
+
+To ***Prepare*** to test directions:
+1. Push code to your robot.
+2. Navigate and init the `Tuning` TeleOp.
+3. Use Gamepad1 to navigate into the `Localizer[...]` folder and then select `Localization Test`
+
+To ***Test*** for correct directions:
+1. Press the play button and use the joysticks to move around
+2. If the x value ticks down when the robot moves forward, reverse the direction of the forward pod.
+3. If the y value ticks down when the robot moves left, reverse the direction of the strafe pod.
+
+### 3. Localizer Tuning
 We need to adjust multipliers that convert encoder ticks into real-world measurements: inches. This ensures your localizer's readings are accurate.
 
     #### a. Forward Localizer Tuner
     1. Position a ruler alongside your robot.
 
-    2. Run the `Forward Localizer Tuner` opmode. 
+    2. Navigate and init the `Tuning` TeleOp.
 
-    3. Push the robot forward by the desired distance (default is 48 inches).
+    3. Use Gamepad1 to navigate into the `Localizer[...]` folder and then select `Forward Tuner`
 
-    4. The tuner will display two numbers:
+    4. Press the Play Button
 
-    - **First number:** Distance the robot thinks it has traveled.
+    5. Push the robot *forward* by the desired distance (default is 48 inches).
 
-    - **Second number: the `multiplier`**
+    6. The tuner will display two numbers:
 
-    - (Optional) Run multiple tests and average the multipliers for better accuracy.
+        - **First number:** Distance the robot thinks it has traveled.
 
-    5. Input this value in `Constants` as `forwardTicksToInches = [multiplier]`, where `[multiplier]` is the value you obtained from the tuner.
+        - **Second number: the `multiplier`**
 
-#### b. Lateral Localizer Tuner
+        - (Optional) Run multiple tests and average the multipliers for better accuracy.
+
+    7. Input this value in `Constants` replacing the `.forwardTicksToInches(.001989436789)` with` .forwardTicksToInches([multiplier])`, where `[multiplier]` is the value you obtained from the tuner.
+
+    #### a. Forward Localizer Tuner
     1. Position a ruler alongside your robot.
 
-    2. Run the `Lateral Localizer Tuner` opmode.
+    2. Navigate and init the `Tuning` TeleOp.
 
-    3. Push the robot sideways (strafing) by the desired distance (default is 48 inches).
+    3. Use Gamepad1 to navigate into the `Localizer[...]` folder and then select `Lateral Tuner`
 
-    4. The tuner will display two numbers:
+    4. Press the Play Button
 
-    - **First number:** Distance the robot thinks it has traveled laterally.
+    5. Push the robot *sideways* (strafing) by the desired distance (default is 48 inches).
 
-    - **Second number: `multiplier`**
+    6. The tuner will display two numbers:
 
-    - (Optional) Run multiple tests and average the multipliers for better accuracy.
+        - **First number:** Distance the robot thinks it has traveled.
 
-    5. Input this value in `Constants` as `strafeTicksToInches = [multiplier]`, where `[multiplier]` is the value you obtained from the tuner.
+        - **Second number: the `multiplier`**
 
-### Testing Your Localizer
+        - (Optional) Run multiple tests and average the multipliers for better accuracy.
+
+    7. Input this value in `Constants` replacing the `.strafeTicksToInches(.001989436789)` with` .forwardTicksToInches([multiplier])`, where `[multiplier]` is the value you obtained from the tuner.
+
+## Testing Your Localizer
 After completing the tuning steps, you can test your localizer's accuracy.
 
-Go to `Localization` Test and drive your robot around.
+To Test:
+1. Navigate and init the `Tuning` TeleOp.
+2. Use Gamepad1 to navigate into the `Localizer[...]` folder and then select `Localization Test`
+3. Press the play button and use the joysticks to move around
+4. Open Panels at http://192.168.43.1:8001/ while connected to robot wifi.
 
-Open the FTC Dashboard at http://192.168.43.1:8080/dash.
+Observe the movements on the `Field View` gui. 
+Moving the robot **forward** should make **x increase** and strafing **left** should make **y increase.**
 
-Switch the view to "field view" from the top right corner dropdown.
-
-The dashboard should display the robot's position on the field.
-
-Observe the movements. Moving the robot **forward** should make **x increase** and strafing **left** should make **y increase.**
-
-Here are some common issues that you may face if your localization isn't working: 
-
+## Common Issues
 <Accordions type="single">
     <Accordion title="Heading is very off / moving the robot forward causes the heading to change dramatically">
         Double check the IMU orientations you configured. Often, an incorrect IMU orientation can also cause the reported x and y values to be incorrect. 
