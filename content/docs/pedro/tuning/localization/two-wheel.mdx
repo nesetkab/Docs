@@ -67,7 +67,7 @@ The names will match the hardware map names of the motor port that they are conn
 #### d. Encoder Directions:
 The Encoder Directions can be changed by switching between `Encoder.REVERSE` and `Encoder.FORWARD` for `forwardEncoderDirection` or `strafeEncoderDirection`.
 
-To ***Prepare*** to test directions:
+To ***Prepare*** to test directions: 
 1. Push code to your robot.
 2. Navigate and init the `Tuning` TeleOp.
 3. Use Gamepad1 to navigate into the `Localizer[...]` folder and then select `Localization Test`
@@ -80,7 +80,7 @@ To ***Test*** for correct directions:
 ### 3. Localizer Tuning
 We need to adjust multipliers that convert encoder ticks into real-world measurements: inches. This ensures your localizer's readings are accurate.
 
-    #### a. Forward Localizer Tuner
+    #### a. Forward Tuner
     1. Position a ruler alongside your robot.
 
     2. Navigate and init the `Tuning` TeleOp.
@@ -101,7 +101,7 @@ We need to adjust multipliers that convert encoder ticks into real-world measure
 
     7. Input this value in `Constants` replacing the `.forwardTicksToInches(.001989436789)` with` .forwardTicksToInches([multiplier])`, where `[multiplier]` is the value you obtained from the tuner.
 
-    #### a. Forward Localizer Tuner
+    #### b. Lateral Tuner
     1. Position a ruler alongside your robot.
 
     2. Navigate and init the `Tuning` TeleOp.
