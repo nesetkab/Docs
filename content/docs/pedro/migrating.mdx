@@ -13,21 +13,20 @@ Copy the Tuning class from the [Quickstart](https://github.com/Pedro-Pathing/Qui
 This TeleOp contains all of the Tuners/Tests needed to tune Pedro and verify that it is correctly working.
 
 To use it:
-    a. Init the OpMode  
 
-    b. Use the controller to navigate through the Folders  
+        a. Init the OpMode  
 
-    c. Select an Test/Tuner to run with Right Trigger  
+        b. Use the controller to navigate through the Folders  
 
-    d. Instructions will be displayed via Telemetry  
+        c. Select an Test/Tuner to run with Right Trigger  
 
-    e. Press "Play" to start the Test/Tuner!  
+        d. Instructions will be displayed via Telemetry  
+
+        e. Press "Play" to start the Test/Tuner!  
 
 ### Change Follower Constructors
 Based on the static `createFollower` method, we can replace our previous constructors for the Follower.
 
-Instead of `follower = new Follower(hardwareMap, FConstants.class, LConstants.class);`,
-
-we can now use `follower = createFollower(hardwareMap);`.  
+Instead of `follower = new Follower(hardwareMap, FConstants.class, LConstants.class);`, we can now use `follower = Constants.createFollower(hardwareMap);`.  
   
 This creates an instance of the Follower based on the provided constants, meaning we can have multiple different sets of Constants for seperate opmodes.
