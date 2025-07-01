@@ -1,9 +1,7 @@
 ---
 title: Translational
-description: Tuning the translational PID
+description: The translational PIDF ensures the robot follows a straight path without lateral deviation.
 ---
-
-The translational PID ensures the robot follows a straight path without lateral deviation. It corrects the robot’s position along an imaginary forward line from its starting position.
 
 ## Setup 
 
@@ -15,7 +13,7 @@ The translational PID ensures the robot follows a straight path without lateral 
 **Note that while running the `Translational Tuner` OpMode, the robot will stay in place. This is intentional.**
 
 ## Tuning Process
-Follow this video to help you tune the PID: 
+Follow this video to help you tune the PIDF: 
 <iframe width="560" height="315" 
 src="https://www.youtube.com/embed/Vy-lpPFCJj8?si=4CQ_66QmWt7hk4Zb" 
 title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; 
@@ -23,12 +21,12 @@ clipboard-write; encrypted-media; gyroscope; picture-in-picture;
 web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
 1. Push the robot left or right at varying amounts and observe how the robot corrects back to its starting position. 
-2. Adjust the PID constants (`translationalPIDFCoefficients`) in the FollowerConstants tab of Panels to ensure that the robot can **accurately correct** back to its starting position with **minimal oscillations.** For example, if the robot has too many oscillations while correcting back to its starting position, lower the P value. On the other hand, if the robot corrects back to its starting location too slowly, increase the P value. 
-**If you do not have prior experience with tuning PIDs, we reccommend that you check out the resources provided at the bottom of the PID Tuners page to learn more about tuning PIDs.**
+2. Adjust the PIDF constants (`translationalPIDFCoefficients`) in the FollowerConstants tab of Panels to ensure that the robot can **accurately correct** back to its starting position with **minimal oscillations.** For example, if the robot has too many oscillations while correcting back to its starting position, lower the P value. On the other hand, if the robot corrects back to its starting location too slowly, increase the P value. 
+**If you do not have prior experience with tuning PIDFs, we reccommend that you check out the resources provided at the bottom of the PIDF Tuners page to learn more about tuning PIDFs.**
 
-**If you have a dual PID system enabled,** it is recommended to first tune the main PID, `translationalPIDFCoefficients`, to ensure that the robot can smoothly correct from large errors. Then, tune the secondary PID, `secondaryTranslationalPIDFCoefficients`, so the robot can smoothly correct from smaller errors. 
+**If you have a dual PIDF system enabled,** it is recommended to first tune the main PIDF, `translationalPIDFCoefficients`, to ensure that the robot can smoothly correct from large errors. Then, tune the secondary PIDF, `secondaryTranslationalPIDFCoefficients`, so the robot can smoothly correct from smaller errors. 
 
-**Note:** Don't worry if the robot doesn't correct its heading. We are only tuning for the translational PID: whether the robot corrects left/right appropriately. 
+**Note:** Don't worry if the robot doesn't correct its heading. We are only tuning for the translational PIDF: whether the robot corrects left/right appropriately. 
 
 **Warning:** After adjusting a value in Panels, **hit "enter"** in order to save it and cause the robot to correct differently. However, any values you modify through Panels **are not saved into your code!** In order to transfer the values you just tuned on Panels into your code, go to the **Update Tuned Values** section to learn more.  
 
@@ -40,7 +38,7 @@ If additional feedforward is needed, use `translationalPIDFFeedForward` for corr
 1. Once you are satisfied with your translationalPIDF values, head over to the `Constants` file. 
 2. Navigate to the line `.translationalPIDFCoefficients(new PIDFCoefficients(0.1, 0, 0.01, 0))` 
 3. Update the parameters in `new PIDFCoefficients(0.1, 0, 0.01, 0)` with the `translationalPIDFCoefficients` values, `P, I, D, F`, you tuned on Panels in that order. 
-4. If you are using the dual PID system, **add the line** `.secondaryTranslationalPIDFCoefficients(new PIDFCoefficients(0.1,0,0.01,0))` and update the `secondaryTranslationalPIDF` values you tuned on Panels. 
+4. If you are using the dual PIDF system, **add the line** `.secondaryTranslationalPIDFCoefficients(new PIDFCoefficients(0.1,0,0.01,0))` and update the `secondaryTranslationalPIDF` values you tuned on Panels. 
 
 ## Troubleshooting
-If you encounter a problem while tuning the translational PID, check out the troubleshooting page. 
+If you encounter a problem while tuning the translational PIDF, check out the troubleshooting page. 
