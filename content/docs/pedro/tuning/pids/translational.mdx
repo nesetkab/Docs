@@ -3,21 +3,20 @@ title: Translational
 description: Tuning the translational PID
 ---
 
-### Purpose
+## Purpose
 
 The translational PID ensures the robot follows a straight path without lateral deviation. It corrects the robot’s position along an imaginary forward line from its starting position.
 
-### Setup 
+## Setup 
 
 1. Open Panels. If you haven't used Panels before, you can read their documentation on the "Panels" tab of this website.
 2. On your Driver Hub or Driver Station, and connect a gamepad to it. Make sure to press "start" + "a" on the gamepad. 
-3. Select the `Tuning` Opmode. Use your gamepad to select `Manual`. Then, select `Translational`. 
-4. Ensure that the timer for autonomous OpModes is **disabled.** Otherwise, the OpMode will automatically stop after 30 seconds.
-5. Run the run the `Translational` tuner autonomous OpMode.
+3. Select the `Tuning` Opmode. Use your gamepad to select the `Manual` folder. Then, select `Translational Tuner`.
+4. Run the run the OpMode.
 
 **Note that while running the `TranslationalTuner` OpMode, the robot will stay in place. This is intentional.**
 
-### Tuning Process
+## Tuning Process
 Follow this video to help you tune the PID: 
 <iframe width="560" height="315" 
 src="https://www.youtube.com/embed/Vy-lpPFCJj8?si=4CQ_66QmWt7hk4Zb" 
@@ -45,7 +44,5 @@ If additional feedforward is needed, use `translationalPIDFFeedForward` for corr
 3. Update the parameters in `new PIDFCoefficients(0.1, 0, 0.01, 0)` with the `translationalPIDFCoefficients` values, `P, I, D, F`, you tuned on Panels in that order. 
 4. If you are using the dual PID system, **add the line** `.secondaryTranslationalPIDFCoefficients(new PIDFCoefficients(0.1,0,0.01,0))` and update the `secondaryTranslationalPIDF` values you tuned on Panels. 
 
-### Congratulations, you’ve completed the translational PIDF tuning!
-
-### Troubleshooting
+## Troubleshooting
 If you encounter a problem while tuning the translational PID, check out the troubleshooting page. 

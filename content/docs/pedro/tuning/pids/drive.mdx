@@ -1,24 +1,23 @@
 ---
 title: Drive
-description: Tuning the drive PID
 ---
 
-### Purpose
+## Purpose
 
-The drive PID manages acceleration and braking along a path, ensuring smooth motion and minimizing overshoot.
+The Drive PIDF manages acceleration and braking along a path, ensuring smooth motion and minimizing overshoot.
 
-### Setup 
+## Setup 
 
-1. Open Panels. If you haven't used Panels before, you can read their documentation on this website.
-2. On your Driver Hub or Driver Station, select the `Tuning` Opmode and then choose `DriveTuner`. 
-3. Ensure that the timer for autonomous OpModes is **disabled.** Otherwise, the OpMode will automatically stop after 30 seconds.
-4. Run the run the `DriveTuner` autonomous OpMode.
+1. Open Panels. If you haven't used Panels before, you can read their documentation on the [Panels](../../panels) tab of this website.
+2. On your Driver Hub or Driver Station, and connect a gamepad to it. Make sure to press "start" + "a" on the gamepad. 
+3. Select the `Tuning` Opmode. Use your gamepad to select the `Manual` folder. Then, select `Drive Tuner`.
+4. Run the run the OpMode.
 
-**WARNING: Immediately after runnin the `DriveTuner` Opmode, the robot will move straight back and forth 40 inches. Make sure you have enough space before running this opmode.**
+**WARNING: Immediately after running the `Drive Tuner` Opmode, the robot will move straight back and forth 40 inches. Make sure you have enough space before running this opmode.**
 You can adjust the distance the robot drives back and forth through Panels. 
 
-### Tuning Process
-Follow this video to help you tune the PID: 
+## Tuning Process
+Follow this video to help you tune the PIDF: 
 TODO: THIS WILL NEED TO BE UPDATED LATER
 
 ### Setting the Zero Power Acceleration 
@@ -36,10 +35,10 @@ The ZPAM you set in the `Constants` class will be the default ZPAM for all paths
 TODO: Go through this process in more detail
 
 1. Observe how the robot moves back and forth through its path. 
-2. Adjust the PID constants (`drivePIDFCoefficients`) in the FollowerConstants tab of Panels to ensure that the robot accurately drive straight back and forth with minimal oscillations. 
-**If you do not have prior experience with tuning PIDs, we reccommend that you check out the resources provided at the bottom of the PID Tuners page to learn more about tuning PIDs.**
+2. Adjust the PIDF constants (`drivePIDFCoefficients`) in the FollowerConstants tab of Panels to ensure that the robot accurately drive straight back and forth with minimal oscillations. 
+**If you do not have prior experience with tuning PIDFs, we reccommend that you check out the resources provided at the bottom of the PIDF Tuners page to learn more about tuning PIDFs.**
 
-**If you have a dual PID system enabled,** it is recommended to first tune the main PID, `drivePIDFCoefficients`, to ensure that the robot can smoothly correct back from large errors. Then, tune the secondary PID, `secondaryDrivePIDFCoefficients`, so the robot can smoothly correct from smaller errors. 
+**If you have a dual PIDF system enabled,** it is recommended to first tune the main PIDF, `drivePIDFCoefficients`, to ensure that the robot can smoothly correct back from large errors. Then, tune the secondary PIDF, `secondaryDrivePIDFCoefficients`, so the robot can smoothly correct from smaller errors. 
 
 **Warning:** After adjusting a value in Panels, **hit "enter"** in order to save it and cause the robot to correct differently. However, any values you modify through Panels **are not saved into your code!** In order to transfer the values you just tuned on Panels into your code, go to the **Update Tuned Values** section to learn more.  
 
@@ -51,9 +50,7 @@ If additional feedforward is needed, use `drivePIDFFeedForward` for corrections 
 1. Once you are satisfied with your drivePIDF values, head over to the `Constants` file. 
 2. Navigate to the line `.drivePIDFCoefficients(new PIDFCoefficients(0.1, 0, 0.01, 0))` 
 3. Update the parameters in `new PIDFCoefficients(0.1, 0, 0.01, 0)` with the `drivePIDFCoefficients` values, `P, I, D, F`, you tuned on Panels in that order. 
-4. If you are using the dual PID system, **add the line** `.secondaryDrivePIDFCoefficients(new PIDFCoefficients(0.1,0,0.01,0))` and update the `secondaryDrivePIDF` values you tuned on Panels. 
+4. If you are using the dual PIDF system, **add the line** `.secondaryDrivePIDFCoefficients(new PIDFCoefficients(0.1,0,0.01,0))` and update the `secondaryDrivePIDF` values you tuned on Panels. 
 
-### Congratulations, you’ve completed the drive PIDF tuning!
-
-### Troubleshooting
-If you encounter a problem while tuning the drive PID, check out the troubleshooting page. 
+## Troubleshooting
+If you encounter a problem while tuning the Drive PIDF, check out the troubleshooting page. 

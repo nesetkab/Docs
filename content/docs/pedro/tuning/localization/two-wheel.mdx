@@ -120,7 +120,7 @@ We need to adjust multipliers that convert encoder ticks into real-world measure
 
         - (Optional) Run multiple tests and average the multipliers for better accuracy.
 
-    7. Input this value in `Constants` replacing the `.strafeTicksToInches(.001989436789)` with` .forwardTicksToInches([multiplier])`, where `[multiplier]` is the value you obtained from the tuner.
+    7. Input this value in `Constants` replacing the `.strafeTicksToInches(.001989436789)` with` .strafeTicksToInches([multiplier])`, where `[multiplier]` is the value you obtained from the tuner.
 
 ## Testing Your Localizer
 After completing the tuning steps, you can test your localizer's accuracy.
