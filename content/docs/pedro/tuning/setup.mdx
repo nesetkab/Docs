@@ -2,10 +2,51 @@
 title: Setup
 description: Pre-tuning steps
 ---
+## Setting the mass
+As you can see, in the `Constants` file was created the `followerConstants` which holds different values for follower. To change them, you can use different methods, such as `.mass`, `.centripetalScaling` and so on.
 
-*TODO*
+The mass is used to compensate the centripetal force. To weigh the robot, you can stand on the scales while you hold it in your hands or just put it on scales.
+After that, code may look like this:
+```java title="Constants.java"
+public class Constants {
+    public static FollowerConstants followerConstants = new FollowerConstants()
+    .mass(5);
 
-Cover:
+    public static PathConstraints pathConstraints = new PathConstraints(0.99, 100, 3, 1);
 
-- Setting the mass
-- Setting up drivetrain constants
+    public static Follower createFollower(HardwareMap hardwareMap) {
+        return new FollowerBuilder(followerConstants, hardwareMap)
+                .pathConstraints(pathConstraints)
+                .build();
+    }
+}
+```
+## Forming drivetrain constants
+After setting the mass and before starting the tuning, you have to add a **drivetrain** and **localizer** constants.
+
+Firstly, you need to create your drivetrain constants and add it to the follower.
+After that by using methods, you should set max power, motor's name and direction. (**One side of the wheels must be reversed**):
+```java title="Constants.java"
+public static MecanumConstants driveConstants = new MecanumConstants()
+            .maxPower(1) // sets the max power
+            .rightFrontMotorName("rf") // sets the right front motor's name from config
+            .rightRearMotorName("rr") // sets the right back motor's name from config
+            .leftRearMotorName("lr") // sets the left back motor's name from config
+            .leftFrontMotorName("lf") // sets the left front motor's name from config
+            .leftFrontMotorDirection(DcMotorSimple.Direction.REVERSE) // sets the left front motor's direction
+            .leftRearMotorDirection(DcMotorSimple.Direction.REVERSE) // sets the left back motor's direction
+            .rightFrontMotorDirection(DcMotorSimple.Direction.FORWARD) // sets the right front motor's direction
+            .rightRearMotorDirection(DcMotorSimple.Direction.FORWARD); // sets the right back motor's direction
+```
+## Adding drivetrain and localizer constants to `Follower`
+
+Secondly, you need to create your localizer constants. It will be described later in [**Localizers**](/docs/pedro/tuning/localization) pages. After that, you can add both of them to the follower. You can do it by using methods like `.mecanumDrivetrain` or `.setDrivetrain` if you use your custom drivetrain and `.threeWheelIMULocalizer()` and so on, or `.setLocalizer` . (Localizer adding methods can be described as `.yourLocalizerNameWrittenTogether()`).
+```java title="Constants.java"
+public static Follower createFollower(HardwareMap hardwareMap) {
+        return new FollowerBuilder(followerConstants, hardwareMap)
+                .pathConstraints(pathConstraints)
+                .mecanumDrivetrain(driveConstants)
+                .threeWheelIMULocalizer(threeWheelIMULocalizer)
+                .build();
+    }
+```
