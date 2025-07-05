@@ -21,11 +21,12 @@ public class Constants {
     }
 }
 ```
-## Forming drivetrain constants
 After setting the mass and before starting the tuning, you have to add a **drivetrain** and **localizer** constants.
 
+## Forming drivetrain constants
+
 Firstly, you need to create your drivetrain constants and add it to the follower.
-After that by using methods, you should set max power, motor's name and direction. (**One side of the wheels must be reversed**):
+After that by using methods, you should set max power, motor's name and direction. ():
 ```java title="Constants.java"
 public static MecanumConstants driveConstants = new MecanumConstants()
             .maxPower(1) // sets the max power
@@ -38,9 +39,12 @@ public static MecanumConstants driveConstants = new MecanumConstants()
             .rightFrontMotorDirection(DcMotorSimple.Direction.FORWARD) // sets the right front motor's direction
             .rightRearMotorDirection(DcMotorSimple.Direction.FORWARD); // sets the right back motor's direction
 ```
+
+To get the name of your motor, you should open config on your driver station. Also, if you use the mecanum drivetrain, you must have one of the sides (left or right) reversed.
 ## Adding drivetrain and localizer constants to `Follower`
 
-Secondly, you need to create your localizer constants. It will be described later in [**Localizers**](/docs/pedro/tuning/localization) pages. After that, you can add both of them to the follower. You can do it by using methods like `.mecanumDrivetrain` or `.setDrivetrain` if you use your custom drivetrain and `.threeWheelIMULocalizer()` and so on, or `.setLocalizer` . (Localizer adding methods can be described as `.yourLocalizerNameWrittenTogether()`).
+Secondly, you need to create your localizer constants. It will be described later in [**Localizers**](/docs/pedro/tuning/localization) pages. After that, you can add both of them to the follower. You can do it by using methods like `.mecanumDrivetrain` or `.setDrivetrain` (if you use your custom drivetrain you), and `.threeWheelIMULocalizer()` and so on, or `.setLocalizer`.
+*Localizer adding methods can be found by a similar name to `.yourLocalizerNameWrittenTogether()`.*
 ```java title="Constants.java"
 public static Follower createFollower(HardwareMap hardwareMap) {
         return new FollowerBuilder(followerConstants, hardwareMap)
