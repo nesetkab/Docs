@@ -3,149 +3,117 @@ title: Two Wheel
 description: A localizer that uses two odometry wheels
 ---
 
-import {Accordions, Accordion} from "fumadocs-ui/components/accordion";
+import { Callout } from 'fumadocs-ui/components/callout'
 
-### Prerequisites
-1. Two odometry wheels connected to motor encoder ports on a hub. One odometry wheel should be **parallel** to your robot's wheels, while the other should be **perpendicular** the the robot's wheels. 
-2. A properly configured IMU. 
+## Prerequisites
 
-### Default Values
+Before you tune, you must have two odometry wheels connected to motor encoder
+ports on a hub. One odometry wheel should be **parallel** to your chassis while
+the other should be **perpendicular**.
 
-These are the default values of the TwoWheelConstants. Copy and paste this into your `Constants` file:
+## Setup
+
+In `Constants.java`, add an instance of `TwoWheelConstants`. Make sure to
+replace the hardware map names with the actual names. You must also set the
+IMU orientation to match the orientation of your Control Hub.
 
 ```java title="Constants.java"
-    public static TwoWheelConstants twoWheelConstants = new TwoWheelConstants()
-            .forwardTicksToInches(.001989436789)
-            .strafeTicksToInches(.001989436789)
-            .forwardY(1)
-            .strafeX(2.5)
-            .forwardEncoder_HardwareMapName("leftFront")
-            .strafeEncoder_HardwareMapName("rightRear")
-            .forwardEncoderDirection(Encoder.REVERSE)
-            .strafeEncoderDirection(Encoder.FORWARD)
-            .IMU_HardwareMapName("imu")
-            .IMU_Orientation(new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.UP, RevHubOrientationOnRobot.UsbFacingDirection.LEFT));
+public static TwoWheelConstants localizerConstants = new TwoWheelConstants()
+        .forwardEncoder_HardwareMapName("leftFront")
+        .strafeEncoder_HardwareMapName("rightRear")
+        .IMU_HardwareMapName("imu")
+        .IMU_Orientation(
+            new RevHubOrientationOnRobot(
+                RevHubOrientationOnRobot.LogoFacingDirection.UP,
+                RevHubOrientationOnRobot.UsbFacingDirection.LEFT
+            )
+        );
 ```
 
-## Steps
+Then, add `.twoWheelLocalizer` to `createFollower`:
 
-### 1. Switch to having a `twoWheelLocalizer` in the `createFollower` method.
-- In the `createFollower` method, make sure that the `FollowerBuilder` returned has the desired `twoWheelLocalizer`.
-```java title="twoWheelLocalizer.java"
-    public static Follower createFollower(HardwareMap hardwareMap) {
-        return new FollowerBuilder(followerConstants, hardwareMap)
-                .mecanumDrivetrain(driveConstants)
-                .twoWheelLocalizer(twoWheelConstants) // Add this line
-                .pathConstraints(pathConstraints)
-                .build();
-    }
-```    
+```java title="Constants.java"
+return new FollowerBuilder(followerConstants, hardwareMap)
+    .twoWheelLocalizer(localizerConstants)
+    /* other builder steps */
+    .build();
+```
 
-### 2. Odometry Wheel Setup
-Open the file `Constants` and navigate to `TwoWheelConstants`. Configure the following:
+### Offsets
 
-#### a. Encoder Ports:
-Replace the `forwardEncoder_HardwareMapName` and `strafeEncoder_HardwareMapName` with the names of the ports connected to your encoders (odometry).
-The names will match the hardware map names of the motor port that they are connected to.
+You must also set your odometry pod offsets, which is where they are
+relative to your robot's center of rotation. You can use the diagram below
+to find them. **Offsets are in inches.**
 
-- The `forwardEncoder_HarwareMapName` should be the name of the port connected to the odometry pod **parallel** to your wheels. 
-- The `strafeEncoder_HardwareMapName` should be the name of the port connected to the odometry pod **perpendicular** to your wheels.
+![Two Wheel Odometry Pod Offset Diagram](/docs/odometry.png)
 
-#### b. IMU Setup:
-- Replace the `IMU_HardwareMapName` with the name of the configuration for your IMU.
-- **Note:** Make sure that if you are using the control hub's built-in IMU, you have it configured to **port 0** on the **control hub**.
-- Define the orientation of the IMU on the robot by changing the `RevHubOrientationOnRobot` value for `IMU_Orientation`. 
-- Refer to [this resource](https://ftc-docs.firstinspires.org/en/latest/programming_resources/imu/imu.html?highlight=imu#physical-hub-mounting) to determine your IMU's `LogoFacingDirection` and `UsbFacingDirection`.
+Once you have found your offsets, add them to your localizer constants by
+using `.forwardY()` and `.strafeX()`.
 
-#### c. Odometry Measurements:
-- Input the `forwardY` and `strafeX` values.
-- These values represent the distance of the odometry wheels from the robot's center of rotation on the robot coordinate grid **in inches.**
-- Use this diagram to find the signs these distances. This view is from the **top of the robot looking downwards.**
+## Tuning
 
-// REMOVED THE DIAGRAM TEMPORARILY
+### Encoder Directions
 
-#### d. Encoder Directions:
-The Encoder Directions can be changed by switching between `Encoder.REVERSE` and `Encoder.FORWARD` for `forwardEncoderDirection` or `strafeEncoderDirection`.
+We will now determine the encoder directions. First, select and run
+localization test under the localization folder in the tuning OpMode. Then,
+move the robot forward. The x coordinate should increase. Next, move the
+robot left. The y coordinate should increase. If either of those does not
+happen, you must reverse the respective encoder. To reverse an encoder, add
 
-To ***Prepare*** to test directions: 
-1. Push code to your robot.
-2. Navigate and init the `Tuning` TeleOp.
-3. Use Gamepad1 to navigate into the `Localizer[...]` folder and then select `Localization Test`
+To reverse an encoder, add one of the following to `TwoWheelConstants`:
 
-To ***Test*** for correct directions:
-1. Press the play button and use the joysticks to move around
-2. If the x value ticks down when the robot moves forward, reverse the direction of the forward pod.
-3. If the y value ticks down when the robot moves left, reverse the direction of the strafe pod.
+```java title="Constants.java"
+.forwardEncoderDirection(Encoder.REVERSE)
 
-### 3. Localizer Tuning
-We need to adjust multipliers that convert encoder ticks into real-world measurements: inches. This ensures your localizer's readings are accurate.
+// and/or:
 
-    #### a. Forward Tuner
-    1. Position a ruler alongside your robot.
+.strafeEncoderDirection(Encoder.REVERSE)
+```
 
-    2. Navigate and init the `Tuning` TeleOp.
+### Forward Tuner
 
-    3. Use Gamepad1 to navigate into the `Localizer[...]` folder and then select `Forward Tuner`
+We will now adjust multipliers that convert encoder ticks into real-world
+measurements: inches. This ensures your localizer's readings are accurate.
 
-    4. Press the Play Button
+In the tuning OpMode, under localization, select and start the forward tuner.
+Then, push the robot **forward 48 inches** (exactly 2 field tiles). This
+distance is configurable if needed. Once you push the robot forward, two
+numbers will be displayed on telemetry:
 
-    5. Push the robot *forward* by the desired distance (default is 48 inches).
+- The distance the robot thinks it has traveled
+- The multiplier; this is the number you want.
 
-    6. The tuner will display two numbers:
+Add the multiplier to your `TwoWheelConstants` by adding the following.
 
-        - **First number:** Distance the robot thinks it has traveled.
+```java title="Constants.java"
+.forwardTicksToInches(multiplier)
+```
 
-        - **Second number: the `multiplier`**
+<Callout title="Tip" type="info">
+  You can run the test multiple times and average the results if desired.
+</Callout>
 
-        - (Optional) Run multiple tests and average the multipliers for better accuracy.
+### Lateral Tuner
 
-    7. Input this value in `Constants` replacing the `.forwardTicksToInches(.001989436789)` with` .forwardTicksToInches([multiplier])`, where `[multiplier]` is the value you obtained from the tuner.
+The lateral tuner is very similar to the forward tuner, except it is
+sideways. In the tuning OpMode, under localization, select and start the
+lateral tuner. Push the robot **left 48 inches** (exactly 2 field tiels). As
+with the forward tuner, this distance is configurable.
 
-    #### b. Lateral Tuner
-    1. Position a ruler alongside your robot.
+Lastly, add the multiplier to `TwoWheelConstants` by adding the following line.
 
-    2. Navigate and init the `Tuning` TeleOp.
+```java title="Constants.java"
+.strafeTicksToInches(multiplier)
+```
 
-    3. Use Gamepad1 to navigate into the `Localizer[...]` folder and then select `Lateral Tuner`
+## Testing the localizer
 
-    4. Press the Play Button
-
-    5. Push the robot *sideways* (strafing) by the desired distance (default is 48 inches).
-
-    6. The tuner will display two numbers:
-
-        - **First number:** Distance the robot thinks it has traveled.
-
-        - **Second number: the `multiplier`**
-
-        - (Optional) Run multiple tests and average the multipliers for better accuracy.
-
-    7. Input this value in `Constants` replacing the `.strafeTicksToInches(.001989436789)` with` .strafeTicksToInches([multiplier])`, where `[multiplier]` is the value you obtained from the tuner.
-
-## Testing Your Localizer
-After completing the tuning steps, you can test your localizer's accuracy.
-
-To Test:
-1. Navigate and init the `Tuning` TeleOp.
-2. Use Gamepad1 to navigate into the `Localizer[...]` folder and then select `Localization Test`
-3. Press the play button and use the joysticks to move around
-4. Open Panels at http://192.168.43.1:8001/ while connected to robot wifi.
-
-Observe the movements on the `Field View` gui. 
-Moving the robot **forward** should make **x increase** and strafing **left** should make **y increase.**
-
-## Common Issues
-<Accordions type="single">
-    <Accordion title="Heading is very off / moving the robot forward causes the heading to change dramatically">
-        Double check the IMU orientations you configured. Often, an incorrect IMU orientation can also cause the reported x and y values to be incorrect. 
-    </Accordion>
-    <Accordion title="The reported x or y values are the opposite of what it should be">
-        - If this happens in the x-direction, try reversing your forward encoder's direction. 
-        - If this happens in the y-direction, try reversing your strafe encoder's direction. 
-    </Accordion>
-    <Accordion title="The x and y values are flipped">
-        Double check whether the forward and strafe configurations are flipped. 
-    </Accordion>
-</Accordions>
+Once you have completed the tuning steps, you can test your localizer as
+described
+[on the localization page](/docs/pedro/tuning/localization#localization-test).
 
 Congratulations on successfully tuning your localizer!
+
+## Troubleshooting
+
+If you have any problems, see the (troubleshooting page)[/docs/pedro/tuning/troubleshooting].
