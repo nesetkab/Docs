@@ -2,55 +2,60 @@
 title: Setup
 description: Pre-tuning steps
 ---
-## Setting the mass
-As you can see, in the `Constants` file was created the `followerConstants` which holds different values for follower. To change them, you can use different methods, such as `.mass`, `.centripetalScaling` and so on.
 
-The mass is used to compensate the centripetal force. To weigh the robot, you can stand on the scales while you hold it in your hands or just put it on scales.
-After that, code may look like this:
+import { Callout } from 'fumadocs-ui/components/callout'
+
+Before you tune Pedro, there are a few simple steps you must complete.
+
+## Setting your robot's mass
+
+Your robot's mass is used to compensate for centripetal force. To set the
+mass, simply add `.mass` in `FollowerConstants`. Note that the mass **must
+be in kilograms**.
+
 ```java title="Constants.java"
-public class Constants {
-    public static FollowerConstants followerConstants = new FollowerConstants()
-    .mass(5);
-
-    public static PathConstraints pathConstraints = new PathConstraints(0.99, 100, 3, 1);
-
-    public static Follower createFollower(HardwareMap hardwareMap) {
-        return new FollowerBuilder(followerConstants, hardwareMap)
-                .pathConstraints(pathConstraints)
-                .build();
-    }
-}
+public static FollowerConstants followerConstants = new FollowerConstants()
+        .mass(5);
 ```
-After setting the mass and before starting the tuning, you have to add a **drivetrain** and **localizer** constants.
 
-## Forming drivetrain constants
+<Callout title="Tip" type="info">
+  If you don't have a large enough scale to weigh your robot, you can stand on
+  the scale while holding your robot and then subtract your own weight.
+</Callout>
 
-Firstly, you need to create your drivetrain constants and add it to the follower.
-After that by using methods, you should set max power, motor's name and direction. ():
+## Adding drivetrain constants
+
+Next, we will add our drivetrain constants. These include motor names, motor
+directions, and the max power. The max power must be a number from 0 to 1.
+
+### Mecanum
+
+If you have a mecanum drivetrain, add the following to your `Constants` class.
+
 ```java title="Constants.java"
 public static MecanumConstants driveConstants = new MecanumConstants()
-            .maxPower(1) // sets the max power
-            .rightFrontMotorName("rf") // sets the right front motor's name from config
-            .rightRearMotorName("rr") // sets the right back motor's name from config
-            .leftRearMotorName("lr") // sets the left back motor's name from config
-            .leftFrontMotorName("lf") // sets the left front motor's name from config
-            .leftFrontMotorDirection(DcMotorSimple.Direction.REVERSE) // sets the left front motor's direction
-            .leftRearMotorDirection(DcMotorSimple.Direction.REVERSE) // sets the left back motor's direction
-            .rightFrontMotorDirection(DcMotorSimple.Direction.FORWARD) // sets the right front motor's direction
-            .rightRearMotorDirection(DcMotorSimple.Direction.FORWARD); // sets the right back motor's direction
+        .maxPower(1)
+        .rightFrontMotorName("rf")
+        .rightRearMotorName("rr")
+        .leftRearMotorName("lr")
+        .leftFrontMotorName("lf")
+        .leftFrontMotorDirection(DcMotorSimple.Direction.REVERSE)
+        .leftRearMotorDirection(DcMotorSimple.Direction.REVERSE)
+        .rightFrontMotorDirection(DcMotorSimple.Direction.FORWARD)
+        .rightRearMotorDirection(DcMotorSimple.Direction.FORWARD)
 ```
 
-To get the name of your motor, you should open config on your driver station. Also, if you use the mecanum drivetrain, you must have one of the sides (left or right) reversed.
-## Adding drivetrain and localizer constants to `Follower`
+<Callout title="Important" type="warning">
+  Make sure that your motor names and directions are correct. It's likely
+  that you will have to reverse one side!
+</Callout>
 
-Secondly, you need to create your localizer constants. It will be described later in [**Localizers**](/docs/pedro/tuning/localization) pages. After that, you can add both of them to the follower. You can do it by using methods like `.mecanumDrivetrain` or `.setDrivetrain` (if you use your custom drivetrain you), and `.threeWheelIMULocalizer()` and so on, or `.setLocalizer`.
-*Localizer adding methods can be found by a similar name to `.yourLocalizerNameWrittenTogether()`.*
+Then, add the mecanum drivetrain to the follower builder in `createFollower`:
+
 ```java title="Constants.java"
 public static Follower createFollower(HardwareMap hardwareMap) {
         return new FollowerBuilder(followerConstants, hardwareMap)
                 .pathConstraints(pathConstraints)
                 .mecanumDrivetrain(driveConstants)
-                .threeWheelIMULocalizer(threeWheelIMULocalizer)
                 .build();
-    }
 ```
