@@ -2,31 +2,48 @@
 title: Migrating
 description: Migrating to Pedro 1.1.0
 ---
-### Convert Constants
-    1. Open our [Constants Migrator](https://pedro-pathing.github.io/ConstantsConverter/) in your browser of choice (This will not work well on mobile devices).
-    2. Input your existing FConstants and LConstants classes directly into the Converter.
-    3. Create a Constants class and paste the output (right side) of the converter into that class.
 
-### Copy Tuning Class 
-Copy the Tuning class from the [Quickstart](https://github.com/Pedro-Pathing/Quickstart/blob/dev/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/pedroPathing/Tuning.java) and place it in your repository
+import { Callout } from 'fumadocs-ui/components/callout'
 
-This TeleOp contains all of the Tuners/Tests needed to tune Pedro and verify that it is correctly working.
+Migrating to Pedro 1.1.0 has a few steps.
 
-To use it:
+## Convert your constants
 
-          a. Init the OpMode  
+1. Open the [constants migrator](https://pedro-pathing.github.io/ConstantsConverter/)
+in your browser of choice.
+2. Input your existing `FConstants` and `LConstants` classes into
+the converter.
+3. Click "convert".
+4. Create a `Constants.java` file and paste the output of the
+converter into that class.
 
-          b. Use the controller to navigate through the Folders  
+<Callout title="Important" type="warning">
+  The constants converter does **not** add the package declaration or
+  imports. You must keep the package declaration and use Android Studio's
+  auto import to add the imports.
+</Callout>
 
-          c. Select an Test/Tuner to run with Right Trigger  
+## Add the tuning OpModes
+Copy the [`Tuning.java` file](https://github.com/Pedro-Pathing/Quickstart/blob/dev/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/pedroPathing/Tuning.java)
+and place it in your project.
 
-          d. Instructions will be displayed via Telemetry  
+This OpMode contains all the tuners and tests needed to tune Pedro and verify
+that it is correctly working.
 
-          e. Press "Play" to start the Test/Tuner!  
+To use the OpMode:
 
-### Change Follower Constructors
-Based on the static `createFollower` method, we can replace our previous constructors for the Follower.
+1. Initialize the OpMode.
+2. Use a gamepad to navigate through the folders as instructed in telemetry.
+3. Select a tuner/test by pressing the right bumper.
+4. Instructions will be displayed via telemetry.
+5. Press play to start the tuner/test!
 
-Instead of `follower = new Follower(hardwareMap, FConstants.class, LConstants.class);`, we can now use `follower = Constants.createFollower(hardwareMap);`.  
-  
-This creates an instance of the Follower based on the provided constants, meaning we can have multiple different sets of Constants for seperate opmodes.
+## Change how you create Follower
+Instead of directly using the `Follower` constructor, we now use the
+`createFollower` in our `Constants` class.
+
+To create a `Follower`, do:
+
+```java
+follower = Constants.createFollower(hardwareMap);
+```
