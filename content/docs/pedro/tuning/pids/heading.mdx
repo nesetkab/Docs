@@ -1,20 +1,29 @@
 ---
 title: Heading
-description: The heading PIDF corrects for the robot's heading while following the path. 
+description: Tuning the heading PID
 ---
 
-## Setup 
+### Purpose
+
+The heading PIDF corrects for the robot's heading while following the path. 
+
+### Setup 
 
 1. Open Panels. If you haven't used Panels before, you can read the documentation on the [Panels](../../../panels) tab of this website (You can switch on the Top Left of the Website).
-2. On your Driver Hub or Driver Station, and connect a gamepad to it. Make sure to press "start" + "a" on the gamepad. 
-3. Select the `Tuning` Opmode. Use your gamepad to select the `Manual` folder. Then, select `Heading Tuner`.
-4. Run the run the OpMode.
+2. On your Driver Hub or Driver Station, select the `Tuning` Opmode and then choose `HeadingTuner`. 
+3. Ensure that the timer for autonomous OpModes is **disabled.** Otherwise, the OpMode will automatically stop after 30 seconds.
+4. Run the run the `HeadingTuner` autonomous OpMode.
 
 **Note that while running the `Heading Tuner` OpMode, the robot will stay in place. This is intentional.**
 
 ## Tuning Process
 Follow this video to help you tune the PIDF: 
-TODO
+
+<iframe width="560" height="315" 
+src="https://www.youtube.com/embed/cJi_QOMCTmo?si=5z9Z1m5j6dFtDoyS" 
+title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; 
+clipboard-write; encrypted-media; gyroscope; picture-in-picture; 
+web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
 1. Turn the robot left or right at varying amounts and observe how the robot turns back to its starting heading. 
 2. Adjust the PIDF constants (`headingPIDFCoefficients`) in the FollowerConstants tab of Panels to ensure that the robot can **accurately correct** back to its starting position with **minimal oscillations.** For example, if the robot has too many oscillations while correcting back to its starting position, lower the P value. On the other hand, if the robot corrects back to its starting location too slowly, increase the P value. 
