@@ -15,21 +15,39 @@ Use the following format:
 
 <Accordions type="single">
     <Accordion title="Bad Localization">
-        too bad so sad
+        **If you're using a two wheel localizer:**
+        
+        Check whether: 
+        - Your encoder's `HardwareMapName` is incorrect or if the parallel & perpendicular odometry pods' names are swapped.
+        - Your encoders directions are reversed.
+        - Your IMU orientations (`LogoFacingDirection`, `UsbFacingDirection`) are incorrect.
+        - Your odometry pod offests are inaccurate
+
+        Try also running `Forward Tuner` and `Lateral Tuner` more times to get more accurate results for `forwardTicksToInches` and `strafeTicksToInches`.
+        
+        If you're using a [x] localizer: Todo
     </Accordion>
     <Accordion title="PID not PIDing">
         skill issue
     </Accordion>
-    <Accordion title="Robot never stops while running Straight Back and Forth or moves the wrong direction">
+    <Accordion title="Robot's movements are too jittery">
+        TODO
+    </Accordion>
+    <Accordion title="Robot never stops while running a Tuning program or moves in the wrong direction">
         **Check if:** 
         - Your localization is inaccurate. Run `LocalizationTest` and check: 
             - when you move the robot forward, does the x-value increase?
             - when you move the robot to the left, does the y-value increase?
             - is the reported heading accurate?
-        If not, head over back to the localization section and double check your steps. Ensure that your localization is fully accurate before tuning your PIDs and running automatic tuners. 
+        If not, head over back to the localization section and double check your steps. Ensure that your localization is fully accurate before tuning your PIDFs and running automatic tuners. 
         - Your motor directions are reversed. 
+        - Your motor configurations are incorrect.
     </Accordion>
-    <Accordion title="Robot never moves during Straight Back and Forth">
-        **If you are tuning for Translational or Heading PID, this is intentional and there is nothing wrong.**
+    <Accordion title="Robot never moves during TranslationalTuner or HeadingTuner">
+        **If you are tuning for Translational or Heading PIDF, it is intentional that the robot doesn't initially move.**
+        However, if you push/turn the robot and it still doesn't move, check whether your P value in the PIDF is too low. Increasing it may give more power for your robot to correct back to its original position. 
+    </Accordion>
+    <Accordion title="Cannot see the followerConstants through Panels">
+        Double check that you have the `@Configurable` annotation in your `Constants` class. 
     </Accordion>
 </Accordions>

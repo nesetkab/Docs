@@ -1,0 +1,40 @@
+---
+title: Centripetal
+description: Tuning the centripetal scaling
+---
+
+### Purpose
+
+The centripetal force correction enables the robot to accurately follow curved paths.
+
+### Setup 
+
+1. Open Panels. If you haven't used Panels before, you can read the documentation on the [Panels](../../../panels) tab of this website (You can switch on the Top Left of the Website).
+2. On your Driver Hub or Driver Station, select the `Tuning` Opmode, navigate to `Manual` and then choose `CentripetalTuner`. 
+3. Ensure that the timer for autonomous OpModes is **disabled.** Otherwise, the OpMode will automatically stop after 30 seconds.
+4. Run the run the `CentripetalTuner` autonomous OpMode.
+
+**WARNING: Immediately after running the `Centripetal Tuner` Opmode, the robot will move forward and left 20 inches in a curved path. Make sure you have enough space before running this opmode.**
+You can adjust the distance the robot drives back and forth through Panels. 
+
+## Tuning Process
+Follow this video to help you tune the centripetal scalar: 
+
+<iframe width="560" height="315" 
+src="https://www.youtube.com/embed/sGDSsKa-NRc?si=oibNdLErTv2dZCqX" 
+title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; 
+clipboard-write; encrypted-media; gyroscope; picture-in-picture; 
+web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+
+Observe the robot’s path:
+
+- If the robot corrects towards the inside of the curve, increase `centripetalScaling`.
+- If the robot corrects towards the outside of the curve, decrease `centripetalScaling`.
+Adjust the value of `centripetalScaling` within the `followerConstants` section in Panels.
+
+### Update Tuned values Into Your Code
+1. Once you are satisfied with your `centripetalScaling`, head over to the `Constants` file. 
+2. Navigate to the line `.centripetalScaling(0.005)` under `followerConstants`. If you don't have this line, feel free to add it yourself. 
+3. Update the parameters in `.centripetalScaling(0.005)` with the `centripetalScaling` value you tuned. 
+
+## Troubleshooting
