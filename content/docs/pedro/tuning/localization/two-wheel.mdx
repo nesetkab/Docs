@@ -5,11 +5,12 @@ description: A localizer that uses two odometry wheels
 
 import { Callout } from 'fumadocs-ui/components/callout'
 
-## Prerequisites
-
-Before you tune, you must have two odometry wheels connected to motor encoder
-ports on a hub. One odometry wheel should be **parallel** to your chassis while
-the other should be **perpendicular**.
+<Callout title="Prerequisites" type="info">
+  Ensure that two odometry pods are connected: one that is parallel to the length
+  of your chassis and another that is perpendicular to your chassis length. These should be plugged 
+  into ports that have motors on them preferably. Due to technical limitations on REV hubs, encoder ports
+  0 and 3 are the fastest and are reccomended for both pods
+</Callout>
 
 ## Setup
 

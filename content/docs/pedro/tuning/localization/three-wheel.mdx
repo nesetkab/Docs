@@ -6,15 +6,15 @@ description: A localizer that uses three odometry wheels
 import { Callout } from 'fumadocs-ui/components/callout'
 
 <Callout title="Prerequisites" type="info">
-  Make sure you have three odometry pods, two parallel pods and one strafe pods 
-  plugged into the encoder ports for your motors on the Control Hub. Due to technical
-  limitations of the Control Hub, encoder ports number 0 and 3 are the fastest and should
-  be used for your two parallel pods.
+  Ensure that three odometry pods are connected: two that are parallel to the length
+  of your chassis and another that is perpendicular to your chassis length. These should be plugged 
+  into ports that have motors on them preferably. Due to technical limitations on REV hubs, encoder ports
+  0 and 3 are the fastest and are reccomended for the two parallel pods.
 </Callout>
 
 ## Default Values
 In `Constants.java`, add an instance of `ThreeWheelConstants`. Make sure to replace the hardware map names 
-with the actual names. You must also set the IMU orientation to match the orientation of your Control Hub.
+with the actual names.
 
 ```java title="Constants.java"
 public static ThreeWheelConstants localizerConstants = new ThreeWheelConstants()
