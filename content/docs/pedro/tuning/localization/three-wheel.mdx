@@ -32,7 +32,7 @@ public static ThreeWheelConstants localizerConstants = new ThreeWheelConstants()
             .strafeEncoderDirection(Encoder.FORWARD);
 ```
 
-Then, add `.twoWheelLocalizer` to `createFollower`:
+Then, add `.threeWheelLocalizer` to `createFollower`:
 
 ```java title="Constants.java"
 return new FollowerBuilder(followerConstants, hardwareMap)
@@ -65,7 +65,8 @@ happen, you must reverse the respective encoder. To reverse an encoder, add
 To reverse an encoder, add one of the following to `ThreeWheelConstants`:
 
 ```java title="Constants.java"
-.forwardEncoderDirection(Encoder.REVERSE)
+.leftEncoderDirection(Encoder.REVERSE)
+.rightEncoderDirection(Encoder.FORWARD)
 
 // and/or:
 
@@ -97,8 +98,8 @@ Add the multiplier to your `ThreeWheelConstants` by adding the following.
 ```
 
 <Callout title="Tip" type="info">
-  It is recommended that you run the test multiple times and average the results, 
-  although this is not required it can result in more accurate localization.
+  It is recommended that you run these tests multiple times and average the results, 
+  as it can result in more accurate localization.
 </Callout>
 
 ### Lateral Tuner
