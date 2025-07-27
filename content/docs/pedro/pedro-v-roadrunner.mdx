@@ -1,0 +1,20 @@
+---
+title: PedroPathing vs Roadrunner
+description: Pros vs. Cons of both PedroPathing and Roadrunner 1.0
+---
+
+For FTC when it comes to pathfinding, there are two main solutions, **Roadrunner** and **PedroPathing**.
+Although both are designed to achieve the same task, each have their own benefits and tradeoffs. The table
+below comapres the different features
+
+| Feature | **Road Runner** | **PedroPathing** |
+|---------|------------------|------------------|
+| Control Model | Feedforward + Feedback (PID) | Mostly feedback (PID) |
+| Path Type | Parametric Splines | Beizer Curves |
+| Autonomous Logic | Trajectory-centric | Condition-based waypoint state flow |
+| API Complexity | Low, more intuitive | Medium |
+| Tuning Difficulty | Easy (constraints + PID + feedforward) | Medium (mostly PID only) |
+| Best For | Accuracy and predicability | Localization and speed |
+| Odometry | Built-in (2/3 wheel localizer) | Optional, but more localization choices |
+| Reactive Transitions | Not built-in | Built-in via conditions |
+| Command Integration | External (FTCLib, SolversLib, NextFTC) | Built-in (Actions) |

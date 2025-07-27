@@ -1,6 +1,7 @@
 {
   "pages": [
     "index",
+    "pedro-v-roadrunner",
     "installation",
     "migrating",
     "constants",
