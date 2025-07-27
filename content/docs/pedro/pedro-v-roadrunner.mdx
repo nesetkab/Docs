@@ -10,11 +10,11 @@ below comapres the different features
 | Feature | **Road Runner** | **PedroPathing** |
 |---------|------------------|------------------|
 | Control Model | Feedforward + Feedback (PID) | Mostly feedback (PID) |
-| Path Type | Parametric Splines | Beizer Curves |
+| Path Type | Parametric Splines | Bezier curves |
 | Autonomous Logic | Trajectory-centric | Condition-based waypoint state flow |
 | API Complexity | Low, more intuitive | Medium |
 | Tuning Difficulty | Easy (constraints + PID + feedforward) | Medium (mostly PID only) |
-| Best For | Accuracy and predicability | Localization and speed |
+| Best For | Consistency and Predicability | Speed, Accuracy and Localization |
 | Odometry | Built-in (2/3 wheel localizer) | Optional, but more localization choices |
 | Reactive Transitions | Not built-in | Built-in via conditions |
-| Command Integration | External (FTCLib, SolversLib, NextFTC) | Built-in (Actions) |
+| Command Integration | Built-in (Actions) | External (FTCLib, SolversLib, NextFTC) |
