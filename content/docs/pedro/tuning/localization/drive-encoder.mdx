@@ -66,6 +66,12 @@ values measured above.
 We will now adjust multipliers that convert encoder ticks into real-world
 measurements: inches. This ensures your localizer's readings are accurate.
 
+<Callout title="Tip" type="info">
+  It is recommended that you run these tests multiple times and average the results, 
+  as it can result in more accurate localization.
+</Callout>
+
+
 In the tuning OpMode, under localization, select and start the forward tuner.
 Then, push the robot **forward 48 inches** (exactly 2 field tiles). This
 distance is configurable if needed. Once you push the robot forward, two
@@ -79,11 +85,6 @@ Add the multiplier to your `DriveEncoderConstants` by adding the following.
 ```java title="Constants.java"
 .forwardTicksToInches(multiplier)
 ```
-
-<Callout title="Tip" type="info">
-  It is recommended that you run these tests multiple times and average the results, 
-  as it can result in more accurate localization.
-</Callout>
 
 ### Lateral Tuner
 
