@@ -49,6 +49,54 @@ Add the multiplier to `MecanumConstants` by adding or editing the following.
 .yMovement(velocity)
 ```
 
+## Forward Zero Power Acceleration
+
+<Callout title="Purpose" type="info">
+  Measures how your robot decelerates when moving forward and power is cut from the drivetrain. 
+  This value is critical for improving motion accuracy in Pedro Pathing.
+</Callout>
+
+First, make sure you have enough to accelerate 30 in/s forward. You can adjust the velocity
+by navigating to `ForwardZeroPowerAccelerationTuner` in `Tuning.java`. Typically values closer to your 
+max velocity yield better results. Then, in the Tuning OpMode, under automatic, select and start the forward 
+zero power acceleration test. The robot will speed up rapidly until it reaches the inputted velocity, then
+abruptly cut power and measure the deacceleration rate.
+
+Once the robot stops moving, one number will be displayed on telemetry:
+
+- Forward Zero Power Acceleration: The deacceleration rate of the robot; this is what we want
+
+Add the multiplier to `FollowerConstants` by adding or editing the following.
+
+```java title="Constants.java"
+.forwardZeroPowerAcceleration(deacceleration)
+```
+
+## Lateral Zero Power Acceleration
+
+<Callout title="Purpose" type="info">
+  Measures how your robot decelerates when moving lateral and power is cut from the drivetrain. 
+  This value is critical for improving motion accuracy in Pedro Pathing.
+</Callout>
+
+First, make sure you have enough to accelerate 30 in/s to the left. You can adjust the velocity
+by navigating to `LateralZeroPowerAccelerationTuner` in `Tuning.java`. Typically values closer to your 
+max velocity yield better results. Then, in the Tuning OpMode, under automatic, select and start the lateral 
+zero power acceleration test. The robot will speed up rapidly until it reaches the inputted velocity, then
+abruptly cut power and measure the deacceleration rate.
+
+Once the robot stops moving, one number will be displayed on telemetry:
+
+- Lateral Zero Power Acceleration: The deacceleration rate of the robot; this is what we want
+
+Add the multiplier to `FollowerConstants` by adding or editing the following.
+
+```java title="Constants.java"
+.lateralZeroPowerAcceleration(deacceleration)
+```
+
+Congratulations, you've completed all of the automatic tuners!
+
 ## Troubleshooting
 
 If you have any problems, see the (troubleshooting page)[/docs/pedro/tuning/troubleshooting].
