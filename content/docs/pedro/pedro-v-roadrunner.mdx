@@ -6,15 +6,14 @@ description: Pros vs. Cons of both PedroPathing and Roadrunner 1.0
 For FTC when it comes to pathfinding, there are two main solutions, **Roadrunner** and **PedroPathing**.
 Although both are designed to achieve the same task, each have their own benefits and tradeoffs. The table
 below comapres the different features
+# Pedro Pathing vs Road Runner
 
-| Feature | **Road Runner** | **PedroPathing** |
-|---------|------------------|------------------|
-| Control Model | Feedforward + Feedback (PID) | Mostly feedback (PID) |
-| Path Type | Parametric Splines | Bezier curves |
-| Autonomous Logic | Trajectory-centric | Condition-based waypoint state flow |
-| API Complexity | Low, more intuitive | Medium |
-| Tuning Difficulty | Easy (constraints + PID + feedforward) | Medium (mostly PID only) |
-| Best For | Consistency and Predicability | Speed, Accuracy and Localization |
-| Odometry | Built-in (2/3 wheel localizer) | Optional, but more localization choices |
-| Reactive Transitions | Not built-in | Built-in via conditions |
-| Command Integration | Built-in (Actions) | External (FTCLib, SolversLib, NextFTC) |
+| Feature | Pedro Pathing | Road Runner |
+|--------|--------|--------|
+| **Path Following** | Path Follower | Trajectory follower using motion profiling | **Visualizer** | Web-based using a nonstandard (0 - 144) coordinate scheme | Code-based using the standard FTC coordinate scheme |
+| **Tuning** | Half manual and half automatic | Nearly all automatic |
+| **Motor Write Caching** | Used by default | Able to be implemented manually |
+| **Paths** | Cubic Bezier curves | Quintic Hermite splines |
+| **Bulk Reads** | Able to be implemented manually | Used by default |
+| **Priority** | Speed | Time consistency |
+| **Command Integration** | External (FTCLib, SolversLib, NextFTC) | Built-in (Actions) |
