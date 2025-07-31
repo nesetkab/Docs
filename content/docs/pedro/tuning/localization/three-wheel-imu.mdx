@@ -12,7 +12,7 @@ description: A localizer that uses three odometry wheels and an IMU
 
 ## Default Values
 In `Constants.java`, add an instance of `ThreeWheelIMUConstants`. Make sure to replace the hardware map names 
-with the actual names. You must also set the IMU orientation to match the orientation of your Control Hub.
+with the actual names of the motor port they are plugged into. You must also set the IMU orientation to match the orientation of your Control Hub.
 
 ```java title="Constants.java"
 public static ThreeWheelIMUConstants localizerConstants = new ThreeWheelIMUConstants()

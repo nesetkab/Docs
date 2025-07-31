@@ -14,7 +14,7 @@ import { Callout } from 'fumadocs-ui/components/callout'
 
 ## Default Values
 In `Constants.java`, add an instance of `ThreeWheelConstants`. Make sure to replace the hardware map names 
-with the actual names.
+with the actual names of the motor port they are plugged into.
 
 ```java title="Constants.java"
 public static ThreeWheelConstants localizerConstants = new ThreeWheelConstants()
@@ -43,7 +43,7 @@ return new FollowerBuilder(followerConstants, hardwareMap)
 
 ### Offsets
 
-You must also set your odometry pod offsets, which is where they are
+You must also set your odometry pod offsets, which are
 relative to your robot's center of rotation. You can use the diagram below
 to find them. **Offsets are in inches.**
 
@@ -59,8 +59,10 @@ using `.leftPodY()`, `.rightPodY()` and `.strafeX()`.
 We will now determine the encoder directions. First, select and run
 localization test under the localization folder in the tuning OpMode. Then,
 move the robot forward. The x coordinate should increase. Next, move the
-robot left. The y coordinate should increase. If either of those does not
-happen, you must reverse the respective encoder. To reverse an encoder, add
+robot left. The y coordinate should increase. If these do not happen, the
+respective encoders must be the inverse of what they currently are (NOTE:
+both parallel pods must be inversed if the x coordinate decreases).
+To reverse an encoder, add
 
 To reverse an encoder, add one of the following to `ThreeWheelConstants`:
 
