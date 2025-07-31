@@ -10,9 +10,9 @@ description: The four automatic tuners
   This value is used for accurate path-following calculations in Pedro Pathing.
 </Callout>
 
-First, make sure you have enough room. By default, the robot moves 48 inches, but this can be 
-change by navigating to the `ForwardVelocityTuner` class in `Tuning.java`. Typically larger numbers yield
-better results. Then, in the Tuning OpMode, under automatic, select and start the forward velocity tuner. The 
+First, make sure you have enough room. By default, the robot moves 48 inches forward, but this can be 
+changed by navigating to the `ForwardVelocityTuner` class in `Tuning.java`. Typically larger numbers yield
+better results. Then, in the Tuning OpMode, under automatic, select and start Forward Velocity Tuner. The 
 robot speed should ramp up until it reaches full power. It will continue moving until it has reached the set distance,
 then it will abruptly stop.
 
@@ -20,7 +20,7 @@ Once the robot stops moving at maximum speed, one number will be displayed on te
 
 - Velocity: The final velocity the robot achieved before stopping; this is what we want
 
-Add the multiplier to `MecanumConstants` by adding or editing the following.
+Add the velocity to `MecanumConstants` by adding or editing the following.
 
 ```java title="Constants.java"
 .xMovement(velocity)
@@ -33,9 +33,9 @@ Add the multiplier to `MecanumConstants` by adding or editing the following.
   This value is used for accurate path-following calculations in Pedro Pathing.
 </Callout>
 
-First, make sure you have enough room. By default, the robot moves 48 inches, but this can be 
-change by navigating to the `LateralVelocityTuner` class in `Tuning.java`. Typically larger numbers yield
-better results. Then, in the Tuning OpMode, under automatic, select and start the lateral velocity tuner. The 
+First, make sure you have enough room. By default, the robot moves 48 inches to the left, but this can be 
+changed by navigating to the `LateralVelocityTuner` class in `Tuning.java`. Typically larger numbers yield
+better results. Then, in the Tuning OpMode, under automatic, select and start Lateral Velocity Tuner. The 
 robot speed should ramp up until it reaches full power. It will continue moving until it has reached the set distance,
 then it will abruptly stop.
 
@@ -43,7 +43,7 @@ Once the robot stops moving at maximum speed, one number will be displayed on te
 
 - Velocity: The final velocity the robot achieved before stopping; this is what we want
 
-Add the multiplier to `MecanumConstants` by adding or editing the following.
+Add the velocity to `MecanumConstants` by adding or editing the following.
 
 ```java title="Constants.java"
 .yMovement(velocity)
@@ -56,17 +56,16 @@ Add the multiplier to `MecanumConstants` by adding or editing the following.
   This value is critical for improving motion accuracy in Pedro Pathing.
 </Callout>
 
-First, make sure you have enough to accelerate 30 in/s forward. You can adjust the velocity
+First, make sure you have enough space to accelerate 30 in/s forward (roughly 1 tile). You can adjust this constraint
 by navigating to `ForwardZeroPowerAccelerationTuner` in `Tuning.java`. Typically values closer to your 
-max velocity yield better results. Then, in the Tuning OpMode, under automatic, select and start the forward 
-zero power acceleration test. The robot will speed up rapidly until it reaches the inputted velocity, then
-abruptly cut power and measure the deacceleration rate.
+max forward velocity yield better results. Then, in the Tuning OpMode, under automatic, select and start Forward
+Zero Power Acceleration Tuner. The robot will speed up until it reaches the commanded velocity, then cut power and measure the deacceleration rate.
 
 Once the robot stops moving, one number will be displayed on telemetry:
 
 - Forward Zero Power Acceleration: The deacceleration rate of the robot; this is what we want
 
-Add the multiplier to `FollowerConstants` by adding or editing the following.
+Add the above number to `FollowerConstants` by adding or editing the following.
 
 ```java title="Constants.java"
 .forwardZeroPowerAcceleration(deacceleration)
@@ -79,17 +78,16 @@ Add the multiplier to `FollowerConstants` by adding or editing the following.
   This value is critical for improving motion accuracy in Pedro Pathing.
 </Callout>
 
-First, make sure you have enough to accelerate 30 in/s to the left. You can adjust the velocity
+First, make sure you have enough space to accelerate 30 in/s to the left (roughly 1 tile). You can adjust this constraint
 by navigating to `LateralZeroPowerAccelerationTuner` in `Tuning.java`. Typically values closer to your 
-max velocity yield better results. Then, in the Tuning OpMode, under automatic, select and start the lateral 
-zero power acceleration test. The robot will speed up rapidly until it reaches the inputted velocity, then
-abruptly cut power and measure the deacceleration rate.
+max lateral velocity yield better results. Then, in the Tuning OpMode, under automatic, select and start `Lateral 
+Zero Power Acceleration Tuner`. The robot will speed up until it reaches the commanded velocity, then cut power and measure the deacceleration rate.
 
 Once the robot stops moving, one number will be displayed on telemetry:
 
 - Lateral Zero Power Acceleration: The deacceleration rate of the robot; this is what we want
 
-Add the multiplier to `FollowerConstants` by adding or editing the following.
+Add the above number to `FollowerConstants` by adding or editing the following.
 
 ```java title="Constants.java"
 .lateralZeroPowerAcceleration(deacceleration)
