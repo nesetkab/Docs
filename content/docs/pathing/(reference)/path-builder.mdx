@@ -1,0 +1,41 @@
+---
+title: Path Builder
+description: Using the PathBuilder
+---
+
+
+Want to make your robot follow a smooth, custom path? The `PathBuilder` in Pedro Pathing is your go-to tool for chaining together curves and controlling how your robot turns along the way. It’s designed to be flexible, readable, and—most importantly—easy to use.
+
+## What is PathBuilder?
+
+Think of `PathBuilder` as a way to “draw” your robot’s route using Bézier curves, then tell it exactly how to turn as it moves. You can add as many path segments as you want, and tweak how the robot finishes each one. It’s all about making complex autos feel simple.
+
+## How do I use it?
+
+Here’s a classic example. Let’s say you want your robot to go from a scoring position to a pickup, then back again, turning smoothly as it moves:
+
+```java
+path = follower.pathBuilder()
+    .addPath(new BezierLine(new Point(scorePose), new Point(pickup1Pose)))
+    .setLinearHeadingInterpolation(scorePose.getHeading(), pickup1Pose.getHeading())
+    .addPath(new BezierLine(new Point(pickup1Pose), new Point(scorePose)))
+    .setLinearHeadingInterpolation(pickup1Pose.getHeading(), scorePose.getHeading())
+    .build();
+
+follower.followPath(path);
+```
+
+## What can I do with it?
+
+- **addPath(path):** Add a Bézier curve or other curve to your chain.
+- **setLinearHeadingInterpolation(startHeading, endHeading, [endTime]):** Make the robot turn smoothly from one heading to another as it drives. (See [Path Constraints](/docs/pathing/(reference)/constraints) for more on timing.)
+- **setConstantHeadingInterpolation(heading):** Keep the robot pointed in the same direction for the whole segment.
+- **build():** Finish up and get your path ready to follow.
+
+## Pro Tips
+
+- Want to control *when* a path ends, or how heading is interpolated? Check out [Path Constraints](/docs/pathing/(reference)/constraints).
+- All headings are in **radians**—don’t forget to use `Math.toRadians(degrees)` if you’re starting with degrees!
+- You can chain as many `addPath` and heading methods as you want. Build something wild.
+
+Curious how Pedro actually follows these paths? Dive into the [Drive Vector Algorithm](/docs/pathing/(reference)/drive-vector-algorithm) for the details.

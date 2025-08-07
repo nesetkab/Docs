@@ -42,13 +42,13 @@ follower.followPath(path);`;
                     </p>
                 </div>
                 <div className="flex flex-col md:flex-row xl:gap-4">
-                    <Link href="/docs/pedro"
-                          className="flex mt-5 xl:mt-10 mb-2 items-center justify-center text-lg font-medium ring-offset-fd-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring bg-gradient-to-b from-fd-primary to-fd-primary/60 text-fd-primary-foreground shadow-fd-background/20 hover:bg-fd-primary/90 h-13 px-7 rounded-full">
-                        Get Started
-                    </Link>
-                    <Link href="/docs/general"
+                    <Link href="/docs/pathing"
                           className="flex mt-5 xl:mt-10 mb-2 items-center justify-center text-lg font-medium ring-offset-fd-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring bg-gradient-to-b from-fd-primary-foreground to-fd-primary-foreground/60 text-fd-primary shadow-fd-background/20 hover:bg-fd-primary-foreground/90 border-fd-primary border hover:opacity-80 h-13 px-7 rounded-full">
-                        General FTC
+                        Pathing
+                    </Link>
+                    <Link href="/docs/panels"
+                          className="flex mt-5 xl:mt-10 mb-2 items-center justify-center text-lg font-medium ring-offset-fd-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring bg-gradient-to-b from-fd-primary-foreground to-fd-primary-foreground/60 text-fd-primary shadow-fd-background/20 hover:bg-fd-primary-foreground/90 border-fd-primary border hover:opacity-80 h-13 px-7 rounded-full">
+                        Panels
                     </Link>
                     <a href="https://github.com/Pedro-Pathing/PedroPathing" target="_blank" rel="noreferrer"
                        className="flex gap-2 mt-5 xl:mt-10 mb-2 items-center justify-center text-lg font-medium shadow-fd-background/20 h-13 px-7 rounded-full hover:bg-fd-card transition-colors duration-150">
