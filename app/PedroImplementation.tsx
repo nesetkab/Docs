@@ -15,6 +15,6 @@ export default function PedroImplementation() {
 
     return (
         <DynamicCodeBlock lang="groovy"
-                          code={`implementation 'com.pedropathing:pedro:${latestVersion}'`}/>
+                          code={`implementation 'com.pedropathing:ftc:${latestVersion}'`}/>
     )
 }
