@@ -3,6 +3,8 @@ title: Constraints
 description: Methods in the Path Class that allow you to control the robot's heading interpolation and end path behavior. 
 ---
 
+import { Callout } from 'fumadocs-ui/components/callout'
+
 ### Timeout
 Sets how long, **in milliseconds,** the follower has to correct after reaching the end of the path. Increasing it will give the robot more time to correct at the end of the path to improve its accuracy. Decreasing it will reduce the robot's wait time between following paths, but may cause the path following to be slightly more inaccurate. 
 
