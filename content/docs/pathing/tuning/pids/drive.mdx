@@ -41,14 +41,14 @@ TODO: Go through this process in more detail
 
 ### Feedforward Adjustments (Optional)
 
-If additional feedforward is needed, use the feedforward term directly in the `drivePIDFCoefficients` and/or `driveTranslationalPIDFCoefficients` if 
+If additional feedforward is needed, use the feedforward term directly in the `drivePIDFCoefficients` and/or `secondaryDrivePIDFCoefficients` if 
 you are using dual PID.
 
 ### Update Tuned values Into Your Code
 1. Once you are satisfied with your drivePIDF values, head over to the `Constants` file. 
-2. Navigate to the line `.drivePIDFCoefficients(new PIDFCoefficients(0.1, 0, 0.01, 0))` 
-3. Update the parameters in `new PIDFCoefficients(0.1, 0, 0.01, 0)` with the `drivePIDFCoefficients` values, `P, I, D, F`, you tuned on Panels in that order. 
-4. If you are using the dual PIDF system, **add the line** `.secondaryDrivePIDFCoefficients(new PIDFCoefficients(0.1,0,0.01,0))` and update the `secondaryDrivePIDF` values you tuned on Panels. 
+2. Navigate to the line `.drivePIDFCoefficients(new FilteredPIDFCoefficients(0.1,0.0,0.01,0.6,0.0))` 
+3. Update the parameters in `new FilteredPIDFCoefficients(0.1,0.0,0.01,0.6,0.0)` with the `drivePIDFCoefficients` values, `P, I, D, F`, you tuned on Panels in that order. 
+4. If you are using the dual PIDF system, **add the line** `.secondaryDrivePIDFCoefficients(new FilteredPIDFCoefficients(0.1,0,0.01,0.6,0.01))` and update the `secondaryDrivePIDF` values you tuned on Panels. 
 
 ## Troubleshooting
 If you encounter a problem while tuning the Drive PIDF, check out the troubleshooting page. 
