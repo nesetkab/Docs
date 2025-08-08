@@ -31,7 +31,8 @@ web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></if
 
 ### Feedforward Adjustments (Optional)
 
-If additional feedforward is needed, use `headingPIDFFeedForward` for corrections in the robot’s movement direction. Avoid modifying the feedforward term directly in the PIDF.
+If additional feedforward is needed, use the feedforward term directly in the `headingPIDFCoefficients` and/or `headingTranslationalPIDFCoefficients` if 
+you are using dual PID.
 
 ### Update Tuned values Into Your Code
 1. Once you are satisfied with your headingPIDF values, head over to the `Constants` file. 
