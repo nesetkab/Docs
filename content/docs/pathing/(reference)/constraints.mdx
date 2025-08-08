@@ -20,12 +20,24 @@ To set: `path.setPathEndTValueConstraint(double set)`
 	Try decreasing the T value constraint for that path. 
 </Callout>
 	
-### `setLinearHeadingInterpolation(double startHeading, double endHeading, double endTime)`
+### Linear Heading Interpolation
 This will cause the robot to turn from `startHeading` to `endHeading` while it is following the path. 
 	
-The `endTime` parameter is a double between 0.0 and 1.0, and it specifies when the robot should finish turning to endHeading. Setting `endTime` to somewhere around 0.8 should work well for most paths. Setting endTime too low will cause the robot to turn too quickly and create too many oscillations, while setting it too high may lower the robot's end heading accuracy. 
+The `endTime` parameter is a double between 0.0 and 1.0, and it specifies when the robot should finish turning to endHeading. Setting `endTime` to somewhere around 0.8 should work 
+well for most paths. Setting endTime too low will cause the robot to turn too quickly and create too many oscillations, while setting it too high may lower the robot's end heading accuracy. 
+
+To set: `setLinearHeadingInterpolation(double startHeading, double endHeading, double endTime)`
 	
-### `setConstantHeadingInterpolation(double setHeading)` 
-Causes the robot to maintain a constant heading while following the path. 
+### Constant Heading Interpolation
+Causes the robot to maintain a constant heading while following the path. If the robot starts a path with a different heading comapared
+to that set in the path, it will turn to that heading before starting the path.
+
+To set: `setConstantHeadingInterpolation(double setHeading)` 
+
+### Tangent Heading Interpolation 
+Causes the robot to adjust the heading tangental to the path, or adjust the heading to the slope of the
+curve.
+
+To set: `setTangentHeadingInterpolation()` 
 	
-**Warning:** startHeading and endHeading must be in **radians!** To convert degrees to radians, use `Math.toRadians(degrees)`. 
+**Warning:** All heading values must be in **radians!** To convert degrees to radians, use `Math.toRadians(degrees)`. 
