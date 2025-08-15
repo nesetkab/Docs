@@ -5,6 +5,7 @@ import type {ReactNode} from 'react';
 import {Banner} from "fumadocs-ui/components/banner";
 import Link from "next/link";
 import {Provider} from "@/app/provider";
+import 'katex/dist/katex.css';
 
 const inter = Inter({
     subsets: ['latin'],

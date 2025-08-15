@@ -13,14 +13,14 @@ description: How Pedro Path Calculates the Drive Vector
 
 First, it calculates the target velocity the robot should have to decelerate at a specified rate and stop exactly at the end of the path. This is done using the kinematics formula:
 
-```java
-targetVelocity = vᵢ = sqrt(-2·a·d)
+```math
+v_{t} = \sqrt{-2 * a_{t} * s}
 ```
 
 Where:
-- `vᵢ` is our target velocity
-- `a` is the desired deceleration (should be negative)
-- `d` is the distance remaining (in code, modified for signed distance).
+- $$v_{t}$$ is our target velocity
+- $$a_{t}$$ is the desired deceleration (should be negative)
+- $$s$$ is the distance remaining (in code, modified for signed distance).
 
 ### 2. Error Control and Feedforward
 
@@ -37,24 +37,29 @@ This works well when cruising at a constant velocity. But during deceleration, m
 To fix this, Pedro Path uses the concept of zero power acceleration, the deceleration the robot naturally experiences when power is cut (basically, its momentum).
 
 Using this value, it estimates the velocity the robot would naturally have at the end of the path if it were to coast with **no power**. That’s calculated using:
-```
-velocityAtEndOfPath = sqrt(vᵢ² + 2·a·d)
+```math
+v_{f} = \sqrt{v_{i}^{2} + 2 * a * s}
 ```
 
 Where:
-- `velocityAtEndOfPath` is the velocity the robot would be at the end of the path if it stopped applying power to the drivetrain and just had its momentum,
-- `vᵢ` is the current velocity,
-- `a` is the zero power deceleration,
-- `d` is the distance remaining.
+- $$v_{f}$$ is the velocity the robot would be at the end of the path if it stopped applying power to the drivetrain and just had its momentum,
+- $$v_{i}$$ is the current velocity,
+- $$a$$ is the zero power deceleration,
+- $$s$$ is the distance remaining.
 
-Then it calculates a value called `zeroPowerDecay` which tells us how much velocity velocity that needs to be lost due to momentum.
+Then it calculates a value called 'zero power decay' which tells us how much velocity needs to be lost due to momentum.
+```math
+p_{d} = v_{i} - v_{f}
 ```
-zeroPowerDecay = currentVelocity - velocityAtEndOfPath
+Where:
+- $$p_{d}$$ is zero power decay,
+- $$v_{i}$$ is the current velocity,
+- $$v_{f}$$ is the velocity at the end of the path.
+
+Finally, it updates the target velocity by subtracting the zero power decay from it.
+
+```math
+v_{t} = v_{t} - p_{d}
 ```
 
-Finally, it adjusts the target velocity by subtracting the `zeroPowerDecay` or accounting for the amount of velocity that needs to be lost due to momentum.
-
-```
-targetVelocity = targetVelocity - zeroPowerDecay
-```
 This lets the robot reduce its feedforward power appropriately, so it slows down predictively, not just reactively.
