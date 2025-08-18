@@ -24,7 +24,7 @@ follower.followPath(path);`;
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div>
                         <span className="text-lg">Autonomous pathing made easy...</span>
-                        <h2 className="text-3xl mt-2 font-bold">An advanced reactive vector follower
+                        <h2 className="text-3xl mt-2 font-bold">An path follower
                             designed to
                             revolutionize autonomous pathing in robotics.</h2>
                     </div>
