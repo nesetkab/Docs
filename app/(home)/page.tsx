@@ -44,7 +44,7 @@ follower.followPath(path);`;
                 <div className="flex flex-col md:flex-row xl:gap-4">
                     <Link href="/docs/pathing"
                           className="flex mt-5 xl:mt-10 mb-2 items-center justify-center text-lg font-medium ring-offset-fd-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring bg-gradient-to-b from-fd-primary-foreground to-fd-primary-foreground/60 text-fd-primary shadow-fd-background/20 hover:bg-fd-primary-foreground/90 border-fd-primary border hover:opacity-80 h-13 px-7 rounded-full">
-                        Pathing
+                        Get Started with Pathing
                     </Link>
                     <Link href="/docs/panels"
                           className="flex mt-5 xl:mt-10 mb-2 items-center justify-center text-lg font-medium ring-offset-fd-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring bg-gradient-to-b from-fd-primary-foreground to-fd-primary-foreground/60 text-fd-primary shadow-fd-background/20 hover:bg-fd-primary-foreground/90 border-fd-primary border hover:opacity-80 h-13 px-7 rounded-full">
