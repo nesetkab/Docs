@@ -28,14 +28,14 @@ follower.followPath(path);
 ## What can I do with it?
 
 - **addPath(path):** Add a Bézier curve or other curve to your chain.
-- **setLinearHeadingInterpolation(startHeading, endHeading, [endTime]):** Make the robot turn smoothly from one heading to another as it drives. (See [Path Constraints](/docs/pathing/(reference)/constraints) for more on timing.)
-- **setConstantHeadingInterpolation(heading):** Keep the robot pointed in the same direction for the whole segment.
+- **setHeadingInterpolation(HeadingInterpolator):** Control the robot's heading while following paths. (See [Interpolation](/docs/pathing/reference/interpolation)) 
+- **setBrakingStrength(double):** Control your deceleration (See [Deceleration](/docs/pathing/reference/deceleration))
+- **setTValueConstraint(double):** Control when each path is considered complete (See [Path Constraints](/docs/pathing/reference/constraints) for more on timing.)
 - **build():** Finish up and get your path ready to follow.
 
 ## Pro Tips
 
-- Want to control *when* a path ends, or how heading is interpolated? Check out [Path Constraints](/docs/pathing/(reference)/constraints).
 - All headings are in **radians**—don’t forget to use `Math.toRadians(degrees)` if you’re starting with degrees!
 - You can chain as many `addPath` and heading methods as you want. Build something wild.
 
-Curious how Pedro actually follows these paths? Dive into the [Drive Vector Algorithm](/docs/pathing/(reference)/drive-vector-algorithm) for the details.
+Curious how Pedro actually follows these paths? Dive into the [Drive Vector Algorithm](/docs/pathing/reference/drive-vector-algorithm) for the details.

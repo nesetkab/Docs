@@ -1,13 +1,15 @@
 {
   "pages": [
     "index",
+    "pedro-v-roadrunner",
     "installation",
     "migrating",
     "constants",
     "tuning",
     "---Reference---",
-    "...(reference)",
-    "custom",
+    "...reference",
+    "---Custom---",
+    "...custom",
     "---Examples---",
     "...examples"
   ],

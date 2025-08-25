@@ -1,10 +1,9 @@
 {
   "pages": [
-    "pedro-v-roadrunner",
+    "path-builder",
     "interpolation",
     "deceleration",
     "constraints",
-    "path-builder",
     "drive-vector-algorithm"
   ]
 }
