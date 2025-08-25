@@ -24,7 +24,7 @@ follower.followPath(path);`;
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div>
                         <span className="text-lg">Autonomous pathing made easy...</span>
-                        <h2 className="text-3xl mt-2 font-bold">An path follower
+                        <h2 className="text-3xl mt-2 font-bold">A path follower
                             designed to
                             revolutionize autonomous pathing in robotics.</h2>
                     </div>
@@ -44,12 +44,12 @@ follower.followPath(path);`;
                 <div className="flex flex-col md:flex-row xl:gap-4">
                     <Link href="/docs/pathing"
                           className="flex mt-5 xl:mt-10 mb-2 items-center justify-center text-lg font-medium ring-offset-fd-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring bg-gradient-to-b from-fd-primary-foreground to-fd-primary-foreground/60 text-fd-primary shadow-fd-background/20 hover:bg-fd-primary-foreground/90 border-fd-primary border hover:opacity-80 h-13 px-7 rounded-full">
-                        Get Started with Pathing
+                        Get Started with Pedro Pathing
                     </Link>
-                    <Link href="/docs/panels"
+                    {/*                    <Link href="/docs/panels"
                           className="flex mt-5 xl:mt-10 mb-2 items-center justify-center text-lg font-medium ring-offset-fd-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring bg-gradient-to-b from-fd-primary-foreground to-fd-primary-foreground/60 text-fd-primary shadow-fd-background/20 hover:bg-fd-primary-foreground/90 border-fd-primary border hover:opacity-80 h-13 px-7 rounded-full">
                         Panels
-                    </Link>
+                    </Link> */}
                     <a href="https://github.com/Pedro-Pathing/PedroPathing" target="_blank" rel="noreferrer"
                        className="flex gap-2 mt-5 xl:mt-10 mb-2 items-center justify-center text-lg font-medium shadow-fd-background/20 h-13 px-7 rounded-full hover:bg-fd-card transition-colors duration-150">
                         <svg className="size-6" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
