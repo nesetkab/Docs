@@ -1,43 +1,42 @@
 ---
 title: Constraints
-description: Methods in the Path Class that allow you to control the robot's heading interpolation and end path behavior. 
 ---
 
 import { Callout } from 'fumadocs-ui/components/callout'
 
-### Timeout
-Sets how long, **in milliseconds,** the follower has to correct after reaching the end of the path. Increasing it will give the robot more time to correct at the end of the path to improve its accuracy. Decreasing it will reduce the robot's wait time between following paths, but may cause the path following to be slightly more inaccurate. 
+Constraints are used to determine when a path is considered complete. 
 
-To set: `path.setPathEndTimeoutConstraint(double set)` 
+There are **five** criteria that all must be met for follower.isBusy() to become false.
+
+### Timeout
+Sets how long, **in milliseconds,** the follower has to correct after stopping, and after this time delay is complete, this criteria to be considered complete.
+Increasing it will give the robot more time to correct at the end of the path to improve its accuracy. Decreasing it will reduce the robot's wait time between following paths, but may cause the path following to be slightly more inaccurate. 
+
+To set: `path.setTimeoutConstraint(double set)` 
 	
 ### TValue
-Sets the path's parametric end criteria, or how much of the path the robot must follow before it is considered complete. `set` should be a double between 0.0 and 1.0, and by default it is 0.995. 
+Sets the path's parametric end criteria, or how much of the path the robot must follow before it is considered complete. `set` should be a double between 0.0 and 1.0.
 
-To set: `path.setPathEndTValueConstraint(double set)`
+To set: `path.setTValueConstraint(double set)`
+
+### Velocity
+Sets the velocity that the robot must be below allowed for this criteria to be considered complete. This is in inches/second. 
+
+To set: `path.setVelocityConstraint(double set)`
+
+### Translational
+Sets the maximum amount of translational error allowed for this criteria to be considered complete.
+The error has to be under this value.
+
+To set: `path.setTranslationalConstraint(double set)`
+
+### Heading
+Sets the maximum amount of heading error allowed for this criteria to be considered complete.
+The error has to be under this value.
+
+To set: `path.setHeadingConstraint(double set)`
 
 <Callout title="Tip" type="info">
 	If the robot gets stuck after reaching the end of the path and is unable to continue following the next one, the follower likely thinks that it is not done following the path. 
-	Try decreasing the T value constraint for that path. 
+	Try decreasing the T-Value and/or Timeout constraint for that path. 
 </Callout>
-	
-### Linear Heading Interpolation
-This will cause the robot to turn from `startHeading` to `endHeading` while it is following the path. 
-	
-The `endTime` parameter is a double between 0.0 and 1.0, and it specifies when the robot should finish turning to endHeading. Setting `endTime` to somewhere around 0.8 should work 
-well for most paths. Setting endTime too low will cause the robot to turn too quickly and create too many oscillations, while setting it too high may lower the robot's end heading accuracy. 
-
-To set: `setLinearHeadingInterpolation(double startHeading, double endHeading, double endTime)`
-	
-### Constant Heading Interpolation
-Causes the robot to maintain a constant heading while following the path. If the robot starts a path with a different heading comapared
-to that set in the path, it will turn to that heading before starting the path.
-
-To set: `setConstantHeadingInterpolation(double setHeading)` 
-
-### Tangent Heading Interpolation 
-Causes the robot to adjust the heading tangental to the path, or adjust the heading to the slope of the
-curve.
-
-To set: `setTangentHeadingInterpolation()` 
-	
-**Warning:** All heading values must be in **radians!** To convert degrees to radians, use `Math.toRadians(degrees)`. 

@@ -39,6 +39,11 @@ implementation 'com.pedropathing.panels:configurables:0.0.15'
 implementation 'com.pedropathing.panels:utils:0.0.11'
 ```
 
+<Callout title="Note" type="info">
+  The Pedro panels imports are not required, you can choose to use FTControl Panels if you wish, the choice is yours.
+  However, you will have to add another maven repository for FTControl Panels. You *will* have to modify import usages in the Drawing and Tuning classes.
+</Callout>
+
 Next, navigate to `File -> Project Structure -> Modules`. 
 There, click on each module (`FtcRobotController` and `Teamcode`) and set their `Compile SDK Version` to 34.  
 Then, click `Apply` and `Ok` to exit. 
