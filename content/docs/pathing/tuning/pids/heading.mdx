@@ -34,6 +34,9 @@ web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></if
 If additional feedforward is needed, use the feedforward term directly in the `headingPIDFCoefficients` and/or `secondaryHeadingPIDFCoefficients` if 
 you are using dual PID.
 
+- The feedforward term applies a minimum power output to the motors to compensate for the friction between the motors, wheels, and the ground. 
+- To tune the feedforward, set all other PIDF values to 0 and increase the Feedforward value up until the robot starts moving/jittering. 
+
 ### Update Tuned values Into Your Code
 1. Once you are satisfied with your headingPIDF values, head over to the `Constants` file. 
 2. Navigate to the line `.headingPIDFCoefficients(new PIDFCoefficients(0.1, 0, 0.01, 0))` 

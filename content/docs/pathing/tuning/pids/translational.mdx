@@ -21,19 +21,22 @@ clipboard-write; encrypted-media; gyroscope; picture-in-picture;
 web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
 1. Push the robot left or right at varying amounts and observe how the robot corrects back to its starting position. 
-2. Adjust the PIDF constants (`translationalPIDFCoefficients`) in the FollowerConstants tab of Panels to ensure that the robot can **accurately correct** back to its starting position with **minimal oscillations.** For example, if the robot has too many oscillations while correcting back to its starting position, lower the P value. On the other hand, if the robot corrects back to its starting location too slowly, increase the P value. 
-**If you do not have prior experience with tuning PIDFs, we reccommend that you check out the resources provided at the bottom of the PIDF Tuners page to learn more about tuning PIDFs.**
+2. Adjust the PIDF constants (`translationalPIDFCoefficients`) in the FollowerConstants tab of Panels to ensure that the robot can **accurately correct** back to its starting position with **minimal oscillations.** For example, if the robot has too many oscillations while correcting back to its starting position, try lowering the P value. On the other hand, if the robot corrects back to its starting location too slowly, increase the P value. 
+**If you do not have prior experience with tuning PIDFs, we recommend that you check out the resources provided at the bottom of the PIDF Tuners page to learn more about tuning these.**
 
-**If you have a dual PIDF system enabled,** it is recommended to first tune the main PIDF, `translationalPIDFCoefficients`, to ensure that the robot can smoothly correct from large errors. Then, tune the secondary PIDF, `secondaryTranslationalPIDFCoefficients`, so the robot can smoothly correct from smaller errors. 
+**If you have a dual PIDF system enabled,** it is recommended to first tune the main PIDF, `translationalPIDFCoefficients`, to ensure that the robot can correct from large errors and bring it within the secondary PID's range. Then, tune the secondary PIDF, `secondaryTranslationalPIDFCoefficients`, so the robot can smoothly correct from smaller errors and minimize oscillations. 
 
 **Note:** Don't worry if the robot doesn't correct its heading. We are only tuning for the translational PIDF: whether the robot corrects left/right appropriately. 
 
-**Warning:** After adjusting a value in Panels, **hit "enter"** in order to save it and cause the robot to correct differently. However, any values you modify through Panels **are not saved into your code!** In order to transfer the values you just tuned on Panels into your code, go to the **Update Tuned Values** section to learn more.  
+**Warning:** After adjusting a value in Panels, **hit "enter"** in order to save it and cause the robot to correct differently. However, any values you modify through Panels **are not saved into your code!** In order to transfer the values you just tuned on Panels into your code, go to the **Update Tuned Values** section.  
 
 ### Feedforward Adjustments (Optional)
 
 If additional feedforward is needed, use the feedforward term directly in the `translationalPIDFCoefficients` and/or `secondaryTranslationalPIDFCoefficients` if 
 you are using dual PID.
+
+- The feedforward term applies a minimum power output to the motors to compensate for the friction between the motors, wheels, and the ground. 
+- To tune the feedforward, set all other PIDF values to 0 and increase the Feedforward value up until the robot starts moving/jittering. 
 
 ### Update Tuned values Into Your Code
 1. Once you are satisfied with your translationalPIDF values, head over to the `Constants` file. 
