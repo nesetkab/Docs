@@ -25,13 +25,24 @@ Use the following format:
 
         Try also running `Forward Tuner` and `Lateral Tuner` more times to get more accurate results for `forwardTicksToInches` and `strafeTicksToInches`.
         
-        If you're using a [x] localizer: Todo
+        **If you're using a three wheel localizer:**
+        
+        Check whether: 
+        - Your encoder's `HardwareMapName` is incorrect or if a parallel & perpendicular odometry pods' names are swapped (will result in robot rotating and translating if swapped).
+        - Your encoders directions are reversed.
+        - Your IMU orientations (`LogoFacingDirection`, `UsbFacingDirection`) are incorrect.
+        - Your odometry pod offests are inaccurate
+    </Accordion>
+    <Accordion title="Robot drifts turning DriveTuner">
+        **If you're using a drive encoders, two wheel, three wheel, or OTOS,** a small amount of drift will happen over time, as these localizer's aren't perfect. 
+        However, the tolerence should remain manageable for the entire 30 second autonomous period.
     </Accordion>
     <Accordion title="PID not PIDing">
         skill issue
     </Accordion>
     <Accordion title="Robot's movements are too jittery">
-        TODO
+        Check your `brakingStrength` in `PathConstraints` and try decreasing it slightyly. This will make the braking smoother and reduce the
+        oscillations.
     </Accordion>
     <Accordion title="Robot never stops while running a Tuning program or moves in the wrong direction">
         **Check if:** 
