@@ -4,7 +4,7 @@ description: How to write an Autonomous using PedroPathing
 ---
 
 This pages gives an overview of how to create an autonomous routine using PedroPathing. It includes explainations
-for creating poses, paths and the flow of logic for integration of other subsytems
+for creating poses, paths and the flow of logic for integration of other subsytems.
 
 ## Step One: Setting up imports and variables
 Ensure to include the required imports for the autonomous. **Note: Make sure the package statement aligns 
@@ -45,8 +45,8 @@ autonomous. Below are the poses for our example autonomous:
 ## Step Three: Path Initializing
 The `buildPaths()` methord creates all the paths and path chains required to define the robots movement. Each path will connect two or more poses
 along with their heading interpolation to create a smooth path. There are two main types of paths:
- - BezierLine: Creates a straight line between two poses
- - BezierCurve Create splines using three or more poses
+ - **BezierLine:** Creates a straight line between two poses
+ - **BezierCurve:** Create splines using three or more poses
 
 There are also constraints which you can add to modify how your robot follows a path. To understand all of them, navigate to [Constraints](/docs/pathing/reference/constraints).
 Below is our example on initializing our paths.
@@ -110,9 +110,9 @@ public void buildPaths() {
 ```
 
 ## Step Four: Managing Path States 
-The `pathState` variable will track the robot's movement throughout the autonomous. Each state in `autonomousPathUpdate()` colerates to 
+The `pathState` variable will track the robot's movement throughout the autonomous. Each state in `autonomousPathUpdate()` correlates to 
 a specfic action the robot is doing. The robot will transition between states based on a specified condition in the `if statement`. This prevents
-premature execution and allow you to incorperate your subsystems.
+premature execution and allows you to incorperate your subsystems.
 
 Below is the example state manager with explainations on what each does and how to modify it to fit your own routine.
 
