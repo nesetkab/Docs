@@ -33,6 +33,12 @@ Use the following format:
         - Your IMU orientations (`LogoFacingDirection`, `UsbFacingDirection`) are incorrect.
         - Your odometry pod offests are inaccurate
     </Accordion>
+    <Accordion title="Robot turns 180 and oscillates during HeadingTuner">
+        This behavior is due to incorrect motor hardwareMap associations. 
+        Usually, this means that the front motors need to be swapped with the rear motors.
+        Try testing that the motors are correctly associated with their hardwareMap names by running the Tuning OpMode and navigating `Localization > Motor Directions` to test.
+        It may require you to swap hardwareMap names or the ports in which motors are plugged into.
+    </Accordion>
     <Accordion title="Robot drifts turning DriveTuner">
         **If you're using a drive encoders, two wheel, three wheel, or OTOS,** a small amount of drift will happen over time, as these localizer's aren't perfect. 
         However, the tolerence should remain manageable for the entire 30 second autonomous period.
@@ -55,7 +61,7 @@ Use the following format:
         **If you are tuning for Translational or Heading PIDF, it is intentional that the robot doesn't initially move.**
         However, if you push/turn the robot and it still doesn't move, check whether your P value in the PIDF is too low. Increasing it may give more power for your robot to correct back to its original position. 
     </Accordion>
-    <Accordion title="Cannot see the followerConstants through Panels">
-        Double check that you have the `@Configurable` annotation in your `Constants` class. 
+    <Accordion title="Cannot see the Follower or Constants in the Tuning Class through Panels">
+        Double check that you have selected an OpMode in the Tuning OpMode using the gamepad before reloading the Panels website.
     </Accordion>
 </Accordions>
