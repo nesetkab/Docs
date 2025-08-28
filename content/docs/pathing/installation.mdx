@@ -17,6 +17,8 @@ Version Control`. For the URL, enter
 2. **OR** run `git clone https://github.com/Pedro-Pathing/Quickstart.git`.
 Make sure you have [git](https://git-scm.com/) installed first.
 
+That's it! You have now installed Pedro Pathing.
+
 ## Manually
 
 In your `build.dependencies.gradle`, add the following to the `repositories
@@ -30,26 +32,8 @@ Then, add the following to the `dependencies { }` block:
 
 <PedroImplementation/>
 
-```groovy
-implementation 'com.pedropathing:telemetry:0.0.6'
-implementation 'com.pedropathing.panels:core:0.0.23'
-implementation 'com.pedropathing.panels:telemetry:0.0.9'
-implementation 'com.pedropathing.panels:field:0.0.13'
-implementation 'com.pedropathing.panels:configurables:0.0.15'
-implementation 'com.pedropathing.panels:utils:0.0.11'
-```
-
-<Callout title="Note" type="info">
-  The Pedro panels imports are not required, you can choose to use FTControl Panels if you wish, the choice is yours.
-  However, you will have to add another maven repository for FTControl Panels. You *will* have to modify import usages in the Drawing and Tuning classes.
-</Callout>
-
-Next, navigate to `File -> Project Structure -> Modules`. 
-There, click on each module (`FtcRobotController` and `Teamcode`) and set their `Compile SDK Version` to 34.  
-Then, click `Apply` and `Ok` to exit. 
-
-Optionally, perform a Gradle Sync (the Elephant with the down arrow at the top right of your Android Studio Top Toolbar) to verify all dependencies are downloaded.  
-There may also be a blue banner with a `Sync Now` button that you may press instead.
+Next, perform a Gradle sync by pressing "sync now" in the blue banner that
+has appeared.
 
 Lastly, copy the files from the [`pedroPathing` package in the quickstart](https://github.com/Pedro-Pathing/Quickstart/tree/dev/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/pedroPathing)
 into your code.

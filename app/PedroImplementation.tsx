@@ -4,7 +4,7 @@ import {DynamicCodeBlock} from "fumadocs-ui/components/dynamic-codeblock";
 
 export default function PedroImplementation() {
 
-    const [latestVersion, setLatestVersion] = useState("Loading...");
+    const [latestVersion, setLatestVersion] = useState("x.y.z");
 
     useEffect(() => {
         fetch("https://api.github.com/repos/Pedro-Pathing/PedroPathing/releases/latest")
@@ -15,6 +15,6 @@ export default function PedroImplementation() {
 
     return (
         <DynamicCodeBlock lang="groovy"
-                          code={`implementation 'com.pedropathing:ftc:${latestVersion}'`}/>
+                          code={`implementation 'com.pedropathing:ftc:${latestVersion}'\nimplementation 'com.pedropathing:telemetry:0.0.6'`}/>
     )
 }
