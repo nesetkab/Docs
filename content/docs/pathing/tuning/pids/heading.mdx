@@ -22,16 +22,16 @@ clipboard-write; encrypted-media; gyroscope; picture-in-picture;
 web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
 1. Turn the robot left or right at varying amounts and observe how the robot turns back to its starting heading. 
-2. Adjust the PIDF constants (`headingPIDFCoefficients`) in the FollowerConstants tab of Panels to ensure that the robot can **accurately correct** back to its starting position with **minimal oscillations.** For example, if the robot has too many oscillations while correcting back to its starting position, lower the P value. On the other hand, if the robot corrects back to its starting location too slowly, increase the P value. 
-**If you do not have prior experience with tuning PIDFs, we reccommend that you check out the resources provided at the bottom of the PIDF Tuners page to learn more about tuning PIDFs.**
+2. Adjust the PIDF constants (`coefficientsHeadingPIDF`) in the FollowerConstants tab of Panels to ensure that the robot can **accurately correct** back to its starting position with **minimal oscillations.** For example, if the robot has too many oscillations while correcting back to its starting position, lower the P value. On the other hand, if the robot corrects back to its starting location too slowly, increase the P value. 
+**If you do not have prior experience with tuning PIDFs, we reccommend that you check out the resources provided at the bottom of the PIDF Tuners page to learn more about tuning these.**
 
-**If you have a dual PIDF system enabled,** it is recommended to first tune the main PIDF, `headingPIDFCoefficients`, to ensure that the robot can smoothly correct back from large errors. Then, tune the secondary PIDF, `secondaryHeadingPIDFCoefficients`, so the robot can smoothly correct from smaller errors. 
+**If you have a dual PIDF system enabled,** it is recommended to first tune the main PIDF, `coefficientsHeadingPIDF`, to ensure that the robot can smoothly correct back from large errors. Then, tune the secondary PIDF, `coefficientsSecondaryHeadingPIDF`, so the robot can smoothly correct from smaller errors. 
 
 **Warning:** After adjusting a value in Panels, **hit "enter"** in order to save it and cause the robot to correct differently. However, any values you modify through Panels **are not saved into your code!** In order to transfer the values you just tuned on Panels into your code, go to the **Update Tuned Values** section to learn more.  
 
 ### Feedforward Adjustments (Optional)
 
-If additional feedforward is needed, use the feedforward term directly in the `headingPIDFCoefficients` and/or `secondaryHeadingPIDFCoefficients` if 
+If additional feedforward is needed, use the feedforward term directly in the `coefficientsHeadingPIDF` and/or `coefficientsSecondaryHeadingPIDF` if 
 you are using dual PID.
 
 - The feedforward term applies a minimum power output to the motors to compensate for the friction between the motors, wheels, and the ground. 

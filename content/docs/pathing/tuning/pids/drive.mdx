@@ -24,7 +24,7 @@ Before tuning the Drive PIDF, we will need to set the BrakingStrength. Head over
 The BrakingStrength you set in the `Constants` class will be the default BrakingStrength for all paths the robot follows. 
 
 1. Observe how the robot moves back and forth through its path. 
-2. Adjust the PIDF constants (`drivePIDFCoefficients`) in the FollowerConstants tab of Panels to ensure that the robot smoothly and accurately drives straight back and forth. 
+2. Adjust the PIDF constants (`coefficientsDrivePIDF`) in the FollowerConstants tab of Panels to ensure that the robot smoothly and accurately drives straight back and forth. 
 
 <Callout title="Tuning Tips" type="info">
   - Increasing your drive PIDF will make the robot move more quickly along the path, at the risk of more overshoot at the end of the path. 
@@ -34,7 +34,7 @@ The BrakingStrength you set in the `Constants` class will be the default Braking
 </Callout>
 **If you do not have prior experience with tuning PIDFs, we recommend that you check out the resources provided at the bottom of the PIDF Tuners page to learn more about tuning these.**
 
-**If you have a dual PIDF system enabled,** it is recommended to first tune the main PIDF, `drivePIDFCoefficients` before tuning the secondary PIDF, `secondaryDrivePIDFCoefficients`. 
+**If you have a dual PIDF system enabled,** it is recommended to first tune the main PIDF, `coefficientsDrivePIDF` before tuning the secondary PIDF, `coefficientsSecondaryDrivePIDF`. 
 
 <Callout title="Tuning Tips" type="info">
 This is also a great time to test how well your previously tuned Translational and Heading PIDFs work together. If the robot's movements are too jittery while driving along its path, you may want to consider re-tuning the Translational and/or Heading PIDFs.
@@ -44,7 +44,7 @@ This is also a great time to test how well your previously tuned Translational a
 
 ### Feedforward Adjustments (Optional)
 
-If additional feedforward is needed, use the feedforward term directly in the `drivePIDFCoefficients` and/or `secondaryDrivePIDFCoefficients` if 
+If additional feedforward is needed, use the feedforward term directly in the `coefficientsDrivePIDF` and/or `coefficientsSecondaryDrivePIDF` if 
 you are using dual PID.
 
 - The feedforward term applies a minimum power output to the motors to compensate for the friction between the motors, wheels, and the ground. 
