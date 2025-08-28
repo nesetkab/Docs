@@ -3,24 +3,25 @@ title: Drive Encoder
 description: A localizer that uses the drive motor encoders
 ---
 
+import { Callout } from 'fumadocs-ui/components/callout'
+
 <Callout title="Prerequisites" type="info">
-  Ensure that you have all four drive motors encoders connected to their respective ports on
+  Ensure that you have all four drive motors encoders connected to their
+  respective ports on
   a REV hub.
 </Callout>
 
 ## Setup
 
-In `Constants.java`, add an instance of `TwoWheelConstants`. Make sure to
-replace the hardware map names with the actual names. You must also set the
-IMU orientation to match the orientation of your Control Hub.
+In `Constants.java`, add an instance of `DriveEncoderConstants`. Make sure to
+replace the motor names and directions with the correct ones.
 
 ```java title="Constants.java"
 public static DriveEncoderConstants localizerConstants = new DriveEncoderConstants()
-            .forwardTicksToInches(1)
-            .strafeTicksToInches(1)
-            .turnTicksToInches(1)
-            .robotWidth(1)
-            .robotLength(1)
+            .rightFrontMotorName("rf")
+            .rightRearMotorName("rr")
+            .leftRearMotorName("lr")
+            .leftFrontMotorName("lf")
             .leftFrontEncoderDirection(Encoder.FORWARD)
             .leftRearEncoderDirection(Encoder.FORWARD)
             .rightFrontEncoderDirection(Encoder.FORWARD)
@@ -36,38 +37,24 @@ return new FollowerBuilder(followerConstants, hardwareMap)
     .build();
 ```
 
-## Tuning
+## Robot Dimensions
 
-### Encoder Directions
+Measure your robot's wheelbase in inches.
 
-We will now determine the encoder directions. First, select and run
-localization test under the localization folder in the tuning OpMode. Then,
-move the robot forward. All the encoders should tick up when the robot moves
-forward.
+- Length: the distance between the front and back wheels
+- Width: the distance between the left and right wheels
 
-To reverse an encoder, add one of the following to `DriveEncoderConstants`:
+In your `DriveEncoderConstants`, use `.robotWidth()` and `.robotLength()` to
+set the values you just measured.
 
-```java title="Constants.java"
-.leftFrontEncoderDirection(Encoder.REVERSE)
-.leftRearEncoderDirection(Encoder.REVERSE)
-.rightFrontEncoderDirection(Encoder.REVERSE)
-.rightRearEncoderDirection(Encoder.REVERSE);
-```
-
-### Robot Width and Length
-
-Measure your robot's wheelbase in inches, the length - the distance from the 
-forward and back wheels - and width - the distance between the left and right wheels.
-Set in your `DriveEncoderConstants` both `.robotWidth()` and `.robotLength()` to the
-values measured above.
-
-### Forward Tuner
+## Forward Tuner
 
 We will now adjust multipliers that convert encoder ticks into real-world
 measurements: inches. This ensures your localizer's readings are accurate.
 
 <Callout title="Tip" type="info">
-  It is recommended that you run these tests multiple times and average the results, 
+  It is recommended that you run these tests multiple times and average the
+  results,
   as it can result in more accurate localization.
 </Callout>
 
@@ -86,7 +73,7 @@ Add the multiplier to your `DriveEncoderConstants` by adding the following.
 .forwardTicksToInches(multiplier)
 ```
 
-### Lateral Tuner
+## Lateral Tuner
 
 The lateral tuner is very similar to the forward tuner, except it is
 sideways. In the tuning OpMode, under localization, select and start the
@@ -99,14 +86,13 @@ Lastly, add the multiplier to `DriveEncoderConstants` by adding the following li
 .strafeTicksToInches(multiplier)
 ```
 
-### Turn Tuner
+## Turn Tuner
 
 The turn tuner is again, similar to both the forward tuner and lateral tuner, except it is
-rotational. Place the robot so it aligns to a fixed reference point (eg. edge of a field tile). 
+rotational. Place the robot so it aligns to a fixed reference point (eg. edge of a field tile).
 In the tuning OpMode, under localization, select and start the
-lateral tuner. Rotate the robot **counterclockwise 48 inches** (exactly 2 field tiles). As
-with the previous tuner, this distance is configurable. Note that the distance is in radians
-rather than degrees.
+lateral tuner. Rotate the robot **counterclockwise one full rotation**. As
+with the previous tuners, this amount is configurable.
 
 Lastly, add the multiplier to `DriveEncoderConstants` by adding the following line.
 

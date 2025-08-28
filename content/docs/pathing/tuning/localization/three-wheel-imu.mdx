@@ -3,6 +3,8 @@ title: Three Wheel + IMU
 description: A localizer that uses three odometry wheels and an IMU
 ---
 
+import { Callout } from 'fumadocs-ui/components/callout'
+
 <Callout title="Prerequisites" type="info">
   Ensure that three odometry pods are connected: two that are parallel to the length
   of your chassis and another that is perpendicular to your chassis length. These should be plugged 
@@ -10,7 +12,7 @@ description: A localizer that uses three odometry wheels and an IMU
   0 and 3 are the fastest and are reccomended for the two parallel pods.
 </Callout>
 
-## Default Values
+## Setup
 In `Constants.java`, add an instance of `ThreeWheelIMUConstants`. Make sure to replace the hardware map names 
 with the actual names of the motor port they are plugged into. You must also set the IMU orientation to match the orientation of your Control Hub.
 
@@ -52,9 +54,7 @@ to find them. **Offsets are in inches.**
 Once you have found your offsets, add them to your localizer constants by
 using `.leftPodY()`, `.rightPodY()` and `.strafePodX()`.
 
-## Tuning
-
-### Encoder Directions
+## Encoder Directions
 
 We will now determine the encoder directions. First, select and run
 localization test under the localization folder in the tuning OpMode. Then,
@@ -78,7 +78,7 @@ To reverse an encoder, add one of the following to `ThreeWheelIMUConstants`:
   or that the hardwareMap is incorrect (ie. forward encoder is actually your strafe encoder and vise versa)
 </Callout>
 
-### Forward Tuner
+## Forward Tuner
 
 We will now adjust multipliers that convert encoder ticks into real-world
 measurements: inches. This ensures your localizer's readings are accurate.
@@ -102,7 +102,7 @@ Add the multiplier to your `ThreeWheelIMUConstants` by adding the following.
   as it can result in more accurate localization.
 </Callout>
 
-### Lateral Tuner
+## Lateral Tuner
 
 The lateral tuner is very similar to the forward tuner, except it is
 sideways. In the tuning OpMode, under localization, select and start the
@@ -115,14 +115,13 @@ Lastly, add the multiplier to `ThreeWheelIMUConstants` by adding the following l
 .strafeTicksToInches(multiplier)
 ```
 
-### Turn Tuner
+## Turn Tuner
 
-The turn tuner is again, similar to both the forward tuner and lateral tuner, except it is
-rotational.Place the robot so it aligns to a fixed reference point (eg. edge of a field tile). 
+The turn tuner is similar to both the forward tuner and lateral tuner, except it is
+rotational. Place the robot so it aligns to a fixed reference point (e.g., edge of a field tile). 
 In the tuning OpMode, under localization, select and start the
-lateral tuner. Rotate the robot **counterclockwise 48 inches** (exactly 2 field tiles). As
-with the previous tuner, this distance is configurable. Note that the distance is in radians
-rather than degrees.
+lateral tuner. Rotate the robot **counterclockwise one full rotation**. As
+with the previous tuners, this amount is configurable.
 
 Lastly, add the multiplier to `ThreeWheelIMUConstants` by adding the following line.
 
