@@ -25,14 +25,16 @@ Otherwise, join the [Pedro Pathing Discord](https://discord.gg/2GfC4qBP5s) and a
         Check whether: 
         - Your encoder's `HardwareMapName` is incorrect or if a parallel & perpendicular odometry pods' names are swapped (will result in robot rotating and translating if swapped).
         - Your encoders directions are reversed.
-        - Your IMU orientations (`LogoFacingDirection`, `UsbFacingDirection`) are incorrect.
+        - Your IMU orientations (`LogoFacingDirection`, `UsbFacingDirection`) are incorrect (only for Three Wheel IMU).
         - Your odometry pod offests are inaccurate
     </Accordion>
     <Accordion title="Robot Turns 180 and Oscillates During Heading Tuner">
         This behavior is due to incorrect motor hardwareMap associations. 
         Usually, this means that the front motors need to be swapped with the rear motors.
+        Or that your odometry offsets offsets have the wrong sign.
         Try testing that the motors are correctly associated with their hardwareMap names by running the Tuning OpMode and navigating `Localization > Motor Directions` to test.
         It may require you to swap hardwareMap names or the ports in which motors are plugged into.
+
     </Accordion>
     <Accordion title="Robot Drifts Turning Drive Tuner">
         **If you're using a drive encoders, two wheel, three wheel, or OTOS,** a small amount of drift will happen over time, as these localizer's aren't perfect. 
