@@ -37,7 +37,7 @@ The BrakingStrength you set in the `Constants` class will be the default Braking
 **If you have a dual PIDF system enabled,** it is recommended to first tune the main PIDF, `coefficientsDrivePIDF` before tuning the secondary PIDF, `coefficientsSecondaryDrivePIDF`. 
 
 <Callout title="Tuning Tips" type="info">
-This is also a great time to test how well your previously tuned Translational and Heading PIDFs work together. If the robot's movements are too jittery while driving along its path, you may want to consider re-tuning the Translational and/or Heading PIDFs.
+PedroPathing now no longer integrates heading and translational PIDF correction for drive tuning, if you would like to test all three of them, navigate yourself to the `LineTest`.
 </Callout>
 
 **Warning:** After adjusting a value in Panels, **hit "enter"** in order to save it and cause the robot to correct differently. However, any values you modify through Panels **are not saved into your code!** In order to transfer the values you just tuned on Panels into your code, go to the **Update Tuned Values** section to learn more.  
