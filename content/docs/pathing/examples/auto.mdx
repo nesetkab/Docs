@@ -8,8 +8,8 @@ for creating poses, paths and the flow of logic for integration of other subsyte
 
 ## Step One: Setting up imports and variables
 Ensure to include the required imports for the autonomous. **Note: Make sure the package statement aligns 
-with that of where your class file is actually located. Android Studio should automatically generate it when
-creating a class**constraints
+with that of where your class files are actually located. Android Studio should automatically generate it when
+creating a class**
 
 ```java title="ExampleSampleAuto.java"
 import com.pedropathing.follower.Follower;
@@ -30,7 +30,7 @@ public class ExampleSampleAuto extends OpMode {
 ```
 
 ## Step Two: Initializing poses
-Poses are essentially points on the field coordinate system that define the (`x`, `y`, `heading`) of your robot during the
+Poses are points on the field coordinate system that define the (`x`, `y`, `heading`) of your robot during the
 autonomous. Below are the poses for our example autonomous:
 
 ```java title="ExampleSampleAuto.java"
@@ -49,7 +49,7 @@ along with their heading interpolation to create a smooth path. There are two ma
  - **BezierCurve:** Create splines using three or more poses
 
 There are also constraints which you can add to modify how your robot follows a path. To understand all of them, navigate to [Constraints](/docs/pathing/reference/constraints).
-Below is our example on initializing our paths.
+Below is our example on initializing paths.
 
 ```java title="ExampleSampleAuto.java"
 private PathChain scorePreload, grabPickup1, grabPickup2, grabPickup3, scorePickup1, scorePickup2, scorePickup3, park;
@@ -225,7 +225,7 @@ public void autonomousPathUpdate() {
 ```
 
 ## Step Five: Init and Loop Methords:
-The initialization phase sets up paths and timers, while the loop ensures continuous updates during autonomous.
+The initialization phase sets up our paths and timers, while the loop ensures continuous updates during autonomous.
 
 ```java title="ExampleSampleAuto"
 @Override
