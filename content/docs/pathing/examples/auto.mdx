@@ -3,8 +3,8 @@ title: Example Auto
 description: How to write an Autonomous using PedroPathing
 ---
 
-This pages gives an overview of how to create an autonomous routine using PedroPathing. It includes explainations
-for creating poses, paths and the flow of logic for integration of other subsytems.
+This pages gives an overview of how to create an autonomous routine using PedroPathing. It includes explanations
+for creating poses, paths and the flow of logic for integration of other subsystems.
 
 ## Step One: Setting up imports and variables
 Ensure to include the required imports for the autonomous. **Note: Make sure the package statement aligns 
@@ -43,7 +43,7 @@ autonomous. Below are the poses for our example autonomous:
 ```
 
 ## Step Three: Path Initializing
-The `buildPaths()` methord creates all the paths and path chains required to define the robots movement. Each path will connect two or more poses
+The `buildPaths()` method creates all the paths and path chains required to define the robots movement. Each path will connect two or more poses
 along with their heading interpolation to create a smooth path. There are two main types of paths:
  - **BezierLine:** Creates a straight line between two poses
  - **BezierCurve:** Create splines using three or more poses
@@ -53,7 +53,7 @@ Below is our example on initializing paths.
 
 ```java title="ExampleSampleAuto.java"
 private PathChain scorePreload, grabPickup1, grabPickup2, grabPickup3, scorePickup1, scorePickup2, scorePickup3, park;
-    s
+
 public void buildPaths() {
     scorePreload = follower.pathBuilder()
             .addPath(new BezierLine(startPose, scorePose))
@@ -111,10 +111,10 @@ public void buildPaths() {
 
 ## Step Four: Managing Path States 
 The `pathState` variable will track the robot's movement throughout the autonomous. Each state in `autonomousPathUpdate()` correlates to 
-a specfic action the robot is doing. The robot will transition between states based on a specified condition in the `if statement`. This prevents
-premature execution and allows you to incorperate your subsystems.
+a specific action the robot is doing. The robot will transition between states based on a specified condition in the `if statement`. This prevents
+premature execution and allows you to incorporate your subsystems.
 
-Below is the example state manager with explainations on what each does and how to modify it to fit your own routine.
+Below is the example state manager with explanations on what each does and how to modify it to fit your own routine.
 
 ```java title="ExampleSampleAuto"
 public void setPathState(int pState) {
@@ -224,7 +224,7 @@ public void autonomousPathUpdate() {
 }
 ```
 
-## Step Five: Init and Loop Methords:
+## Step Five: Init and Loop Methods:
 The initialization phase sets up our paths and timers, while the loop ensures continuous updates during autonomous.
 
 ```java title="ExampleSampleAuto"

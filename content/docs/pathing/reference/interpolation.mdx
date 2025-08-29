@@ -42,13 +42,15 @@ These are defined by tvalue, where 0 is the start and 1 is the end.
 
 An example of this is shown below on a single path. 
 
+For linear interpolation in a PiecewiseNode, make sure to use `HeadingInterpolator.PiecewiseNode.linear()` instead of `HeadingInterpolator.linear()`
+
 ```java
 PATH.setHeadingInterpolation(
     HeadingInterpolator.piecewise(
                                 new HeadingInterpolator.PiecewiseNode(
                                         0,
                                         .3,
-                                        HeadingInterpolator.linear(
+                                        HeadingInterpolator.PiecewiseNode.linear(
                                                 0, 
                                                 Math.toRadians(180)
                                         )
@@ -79,6 +81,7 @@ If users wish, they can create their own interpolation by implementing the `Head
 ### Reverse
 On any Heading Interpolator, you can call `.reversed()` to reverse the direction of the interpolation.  
 For Linear, it would take the longer route around, for tangent it would drive backwards along the tangent, and for facingPoint it would face directly away from the point.
+
 ## PathChain Interpolation
 To interpolate over all of the paths in a pathchain as if they were one connected path, users can use `.setGlobalHeadingInterpolation(HeadingInterpolator)` on the pathchain object.  
 Thus, you can use all of the above options globally on PathChains, as they all implement the HeadingInterpolator interface.

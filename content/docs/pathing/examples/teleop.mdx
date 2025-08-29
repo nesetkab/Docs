@@ -1,11 +1,11 @@
 ---
-title: Example Teleop
-description: How to write a Teleop using PedroPathing
+title: Example TeleOp
+description: How to write a TeleOp using PedroPathing
 ---
 
-This is an example teleop using PedroPathing to make a robot-centric driving robot in teleop.
+This is an example TeleOp using PedroPathing to make a robot-centric driving robot in TeleOp.
 
-```java title="ExampleRobotCentricTeleop"
+```java title="ExampleRobotCentricTeleOp"
 import com.pedropathing.follower.Follower;
 import com.pedropathing.localization.Pose;
 import com.pedropathing.pathgen.BezierLine;
@@ -17,9 +17,9 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import pedroPathing.constants.FConstants;
 import pedroPathing.constants.LConstants;
 
-/**
-@TeleOp(name = "Example Robot-Centric Teleop", group = "Examples")
-public class ExampleRobotCentricTeleop extends OpMode {
+
+@TeleOp(name = "Example Robot-Centric TeleOp", group = "Examples")
+public class ExampleRobotCentricTeleOp extends OpMode {
     private Follower follower;
     /** Start Pose of our robot. This can be changed or saved from the autonomous period. */
     private final Pose startPose = new Pose(60,96, Math.toRadians(-90));
@@ -39,11 +39,11 @@ public class ExampleRobotCentricTeleop extends OpMode {
     /** This method is called once at the start of the OpMode. **/
     @Override
     public void start() {
-        // Calling this method is necessary at the start of your Teleop OpMode.
+        // Calling this method is necessary at the start of your TeleOp OpMode.
         follower.startTeleopDrive();
     }
 
-    /** This is the main loop of the opmode and runs continuously after pressing play **/
+    /** This is the main loop of the OpMode and runs continuously after pressing play **/
     @Override
     public void loop() {
         /*
