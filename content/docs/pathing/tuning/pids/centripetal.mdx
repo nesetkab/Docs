@@ -20,17 +20,13 @@ You can adjust the distance the robot drives back and forth through Panels.
 ## Tuning Process
 Follow this video to help you tune the centripetal scalar: 
 
-<iframe width="560" height="315" 
-src="https://www.youtube.com/embed/sGDSsKa-NRc?si=oibNdLErTv2dZCqX" 
-title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; 
-clipboard-write; encrypted-media; gyroscope; picture-in-picture; 
-web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ydmStygqZA4?si=qZ5mWlLfvNsp7GB3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 Observe the robot’s path:
 
 - If the robot corrects towards the inside of the curve, increase `centripetalScaling`.
 - If the robot corrects towards the outside of the curve, decrease `centripetalScaling`.
-Adjust the value of `centripetalScaling` within the `followerConstants` section in Panels.
+Adjust the value of `centripetalScaling` within the `Tuning`-> `Follower` -> `Constants` section in Panels.
 
 ### Update Tuned values Into Your Code
 1. Once you are satisfied with your `centripetalScaling`, head over to the `Constants` file. 

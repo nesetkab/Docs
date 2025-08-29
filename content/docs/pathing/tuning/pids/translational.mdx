@@ -13,15 +13,12 @@ description: The translational PIDF ensures the robot follows a straight path wi
 **Note that while running the `Translational Tuner` OpMode, the robot will stay in place. This is intentional.**
 
 ## Tuning Process
-Follow this video to help you tune the PIDF: 
-<iframe width="560" height="315" 
-src="https://www.youtube.com/embed/cJi_QOMCTmo?si=5z9Z1m5j6dFtDoyS" 
-title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; 
-clipboard-write; encrypted-media; gyroscope; picture-in-picture; 
-web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+Follow this video to help you tune the PIDF(s): 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qe2eo_Mhtes?si=DMqud3FSZ2j5AmPu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 1. Push the robot left or right at varying amounts and observe how the robot corrects back to its starting position. 
-2. Adjust the PIDF constants (`coefficientsTranslationalPIDF`) in the FollowerConstants tab of Panels to ensure that the robot can **accurately correct** back to its starting position with **minimal oscillations.** For example, if the robot has too many oscillations while correcting back to its starting position, try lowering the P value. On the other hand, if the robot corrects back to its starting location too slowly, increase the P value. 
+2. Adjust the PIDF constants (`coefficientsTranslationalPIDF`) in the `Tuning`-> `Follower` -> `Constants` section of Panels Configurables to ensure that the robot can **accurately correct** back to its starting position with **minimal oscillations.** For example, if the robot has too many oscillations while correcting back to its starting position, try lowering the P value. On the other hand, if the robot corrects back to its starting location too slowly, increase the P value. 
 **If you do not have prior experience with tuning PIDFs, we recommend that you check out the resources provided at the bottom of the PIDF Tuners page to learn more about tuning these.**
 
 **If you have a dual PIDF system enabled,** it is recommended to first tune the main PIDF, `coefficientsTranslationalPIDF`, to ensure that the robot can correct from large errors and bring it within the secondary PID's range. Then, tune the secondary PIDF, `coefficientsSecondaryTranslationalPIDF`, so the robot can smoothly correct from smaller errors and minimize oscillations. 
