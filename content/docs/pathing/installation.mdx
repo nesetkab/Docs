@@ -26,14 +26,18 @@ In your `build.dependencies.gradle`, add the following to the `repositories
 
 ```groovy
 maven { url = 'https://maven.pedropathing.com' }
+maven { url = "https://mymaven.bylazar.com/releases" }
 ```
 
 Then, add the following to the `dependencies { }` block:
 
 <PedroImplementation/>
+```groovy
+implementation 'com.bylazar:fullpanels:1.0.2'
+```
 
 Next, perform a Gradle sync by pressing "sync now" in the blue banner that
 has appeared.
 
-Lastly, copy the files from the [`pedroPathing` package in the quickstart](https://github.com/Pedro-Pathing/Quickstart/tree/dev/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/pedroPathing)
+Lastly, copy the files from the [`pedroPathing` package in the quickstart](https://github.com/Pedro-Pathing/Quickstart/tree/master/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/pedroPathing)
 into your code.
