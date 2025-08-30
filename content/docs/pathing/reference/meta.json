@@ -4,6 +4,7 @@
     "interpolation",
     "deceleration",
     "constraints",
+    "callbacks",
     "drive-vector-algorithm"
   ]
 }
