@@ -40,40 +40,34 @@ PATH.setHeadingInterpolation(
 Like a piecewise function, this will allow you to set different types of interpolation for different segments.
 These are defined by tvalue, where 0 is the start and 1 is the end.
 
-An example of this is shown below on a single path. 
-
-For linear interpolation in a PiecewiseNode, make sure to use `HeadingInterpolator.PiecewiseNode.linear()` instead of `HeadingInterpolator.linear()`
+An example of this is shown below on a single path.
 
 ```java
 PATH.setHeadingInterpolation(
     HeadingInterpolator.piecewise(
-                                new HeadingInterpolator.PiecewiseNode(
-                                        0,
-                                        .3,
-                                        HeadingInterpolator.PiecewiseNode.linear(
-                                                0, 
-                                                Math.toRadians(180)
-                                        )
-                                ),
-                                new HeadingInterpolator.PiecewiseNode(
-                                        .3,
-                                        .6,
-                                        HeadingInterpolator.facingPoint(72, 72)
-                                ),
-                                new HeadingInterpolator.PiecewiseNode(
-                                        .6,
-                                        .7,
-                                        HeadingInterpolator.reversedLinear(
-                                                Math.toRadians(180), 0
-                                        )
-                                ),
-                                new HeadingInterpolator.PiecewiseNode(
-                                        .7,
-                                        1,
-                                        HeadingInterpolator.tangent
-                                )
+                new HeadingInterpolator.PiecewiseNode(
+                        0,
+                        .3,
+                        HeadingInterpolator.linear(0, Math.toRadians(180))
+                ),
+                new HeadingInterpolator.PiecewiseNode(
+                        .3,
+                        .6,
+                        HeadingInterpolator.facingPoint(72, 72)
+                ),
+                new HeadingInterpolator.PiecewiseNode(
+                        .6,
+                        .7,
+                        HeadingInterpolator.reversedLinear(
+                                Math.toRadians(180), 0
                         )
-                );
+                ),
+                new HeadingInterpolator.PiecewiseNode(
+                        .7,
+                        1,
+                        HeadingInterpolator.tangent
+                )
+        );
                 ```
 ### Custom Interpolation
 If users wish, they can create their own interpolation by implementing the `HeadingInterpolator` interface and the interpolate method.
