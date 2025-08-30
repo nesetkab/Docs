@@ -42,6 +42,11 @@ PedroPathing now no longer integrates heading and translational PIDF correction 
 
 **Warning:** After adjusting a value in Panels, **hit "enter"** in order to save it and cause the robot to correct differently. However, any values you modify through Panels **are not saved into your code!** In order to transfer the values you just tuned on Panels into your code, go to the **Update Tuned Values** section to learn more.  
 
+### Braking Start (Optional)
+
+Braking Start determines when the robot starts breaking when global deceleration (deceleration upon the entire PathChain) is active.
+Braking Start can be adjusted just like BrakingStrength.
+
 ### Feedforward Adjustments (Optional)
 
 If additional feedforward is needed, use the feedforward term directly in the `coefficientsDrivePIDF` and/or `coefficientsSecondaryDrivePIDF` if 
