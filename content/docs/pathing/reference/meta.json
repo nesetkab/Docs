@@ -4,7 +4,9 @@
     "interpolation",
     "deceleration",
     "constraints",
+    "pathcomplete",
     "callbacks",
+    "beziercurves",
     "drive-vector-algorithm"
   ]
 }
