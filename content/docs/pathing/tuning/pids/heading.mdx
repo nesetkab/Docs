@@ -34,8 +34,8 @@ you are using dual PID.
 - To tune the feedforward, set all other PIDF values to 0 and increase the Feedforward value up until the robot starts moving/jittering. 
 
 ### Update Tuned values Into Your Code
-1. Once you are satisfied with your headingPIDF values, head over to the `Constants` file. 
-2. Navigate to the line `.headingPIDFCoefficients(new PIDFCoefficients(0.1, 0, 0.01, 0))` 
+1. Once you are satisfied with your headingPIDF values, head over to the `Constants` file, and navigate to the `FollowerConstants` instantiation.
+2. Navigate to or add the line `.headingPIDFCoefficients(new PIDFCoefficients(0.1, 0, 0.01, 0))`
 3. Update the parameters in `new PIDFCoefficients(0.1, 0, 0.01, 0)` with the `headingPIDFCoefficients` values, `P, I, D, F`, you tuned on Panels in that order. 
 4. If you are using the dual PIDF system, **add the line** `.secondaryHeadingPIDFCoefficients(new PIDFCoefficients(0.1,0,0.01,0))` and update the `secondaryHeadingPIDF` values you tuned on Panels. 
 
