@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 export default function HomePage() {
 
     const code = `path = follower.pathBuilder()
-    .addPath(new BezierLine(new Point(scorePose), new Point(pickup1Pose)))
+    .addPath(new BezierLine(scorePose, pickup1Pose))
     .setLinearHeadingInterpolation(scorePose.getHeading(), pickup1Pose.getHeading())
-    .addPath(new BezierLine(new Point(pickup1Pose), new Point(scorePose)))
+    .addPath(new BezierLine(pickup1Pose, scorePose))
     .setLinearHeadingInterpolation((pickup1Pose.getHeading(), scorePose.getHeading()))
     .build();
     
