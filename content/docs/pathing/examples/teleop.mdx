@@ -7,16 +7,11 @@ This is an example TeleOp using PedroPathing to make a robot-centric driving rob
 
 ```java title="ExampleRobotCentricTeleOp"
 import com.pedropathing.follower.Follower;
-import com.pedropathing.localization.Pose;
-import com.pedropathing.pathgen.BezierLine;
-import com.pedropathing.pathgen.PathChain;
-import com.pedropathing.pathgen.Point;
+import com.pedropathing.geometry.BezierLine;
+import com.pedropathing.geometry.Pose;
+import com.pedropathing.paths.PathChain;
 import  com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
-import pedroPathing.constants.FConstants;
-import pedroPathing.constants.LConstants;
-
 
 @TeleOp(name = "Example Robot-Centric TeleOp", group = "Examples")
 public class ExampleRobotCentricTeleOp extends OpMode {
@@ -54,7 +49,7 @@ public class ExampleRobotCentricTeleOp extends OpMode {
             // Make sure to stop any paths the follower was following.
             follower.breakFollowing();
             PathChain scoreSample = follower.pathBuilder()
-                    .addPath(new BezierLine(new Point(follower.getPose()), new Point(scorePose)))
+                    .addPath(new BezierLine(follower.getPose(), scorePose))
                     .setLinearHeadingInterpolation(follower.getPose().getHeading(), scorePose.getHeading())
                     .build();
             follower.followPath(scoreSample);
@@ -79,13 +74,13 @@ public class ExampleRobotCentricTeleOp extends OpMode {
 
         // Update robot movement based on gamepad inputs
         if (!isFollowingPath) {
-             /* Update Pedro to move the robot based on:
-              * Forward/Backward Movement: -gamepad1.left_stick_y
-              * Left/Right Movement: -gamepad1.left_stick_x
-              * Turn Left/Right Movement: -gamepad1.right_stick_x
-              * Robot-Centric Mode: true
-            */
-            follower.setTeleOpMovementVectors(-gamepad1.left_stick_y, -gamepad1.left_stick_x, -gamepad1.right_stick_x, true);
+            /* Update Pedro to move the robot based on:
+             * Forward/Backward Movement: -gamepad1.left_stick_y
+             * Left/Right Movement: -gamepad1.left_stick_x
+             * Turn Left/Right Movement: -gamepad1.right_stick_x
+             * Robot-Centric Mode: true
+             */
+            follower.setTeleOpDrive(-gamepad1.left_stick_y, -gamepad1.left_stick_x, -gamepad1.right_stick_x, true);
         }
         // Loop robot movement and odometry values
         follower.update();
