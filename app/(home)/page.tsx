@@ -12,7 +12,7 @@ export default function HomePage() {
     .addPath(new BezierLine(scorePose, pickup1Pose))
     .setLinearHeadingInterpolation(scorePose.getHeading(), pickup1Pose.getHeading())
     .addPath(new BezierLine(pickup1Pose, scorePose))
-    .setLinearHeadingInterpolation((pickup1Pose.getHeading(), scorePose.getHeading()))
+    .setLinearHeadingInterpolation(pickup1Pose.getHeading(), scorePose.getHeading())
     .build();
     
 follower.followPath(path);`;
