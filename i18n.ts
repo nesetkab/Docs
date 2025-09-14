@@ -1,8 +1,7 @@
-import { defineI18n } from 'fumadocs-core/i18n';
+import { createI18nMiddleware } from 'fumadocs-core/i18n';
 
-export const i18n = defineI18n({
+export const i18n = createI18nMiddleware({
   languages: ['en', 'ru'],
   defaultLanguage: 'en',
-  fallbackLanguage: 'en',
   hideLocale: 'default-locale'
 });
