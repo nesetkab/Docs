@@ -45,9 +45,9 @@ public class ExampleTeleOp extends OpMode {
     @Override
     public void start() {
         //The parameter controls whether the Follower should use break mode on the motors (using it is recommended).
-        //In order to use float mode, pass in false
-        //If you don't pass anything in, it uses the default
-        follower.startTeleopDrive(true);
+        //In order to use float mode, add .useBrakeModeInTeleOp(true); to your Drivetrain Constants in Constant.java (for Mecanum)
+        //If you don't pass anything in, it uses the default (false)
+        follower.startTeleopDrive();
     }
 
     @Override
@@ -65,7 +65,7 @@ public class ExampleTeleOp extends OpMode {
                     -gamepad1.left_stick_y,
                     -gamepad1.left_stick_x,
                     -gamepad1.right_stick_x,
-                    true
+                    true // Robot Centric
             );
 
             //This is how it looks with slowMode on
@@ -73,7 +73,7 @@ public class ExampleTeleOp extends OpMode {
                     -gamepad1.left_stick_y * slowModeMultiplier,
                     -gamepad1.left_stick_x * slowModeMultiplier,
                     -gamepad1.right_stick_x * slowModeMultiplier,
-                    true
+                    true // Robot Centric
             );
         }
 
@@ -84,13 +84,13 @@ public class ExampleTeleOp extends OpMode {
         }
 
         //Stop automated following if the follower is done
-        if (gamepad1.bWasPressed() || (automatedDrive && !follower.isBusy())) {
-            follower.breakFollowing();
+        if (automatedDrive && (gamepad1.bWasPressed() || !follower.isBusy())) {
+            follower.startTeleopDrive();
             automatedDrive = false;
         }
 
         //Slow Mode
-        if (gamepad1.bWasPressed()) {
+        if (gamepad1.rightBumperWasPressed()) {
             slowMode = !slowMode;
         }
 
