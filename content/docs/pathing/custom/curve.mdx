@@ -4,7 +4,7 @@ title: Custom Curve
 
 The Pedro Pathing follower is capable of following custom curves external to the library-provided ones. 
 You can create your own curve by extending the abstract class `CustomCurve`.
-Custom Curves **must** be twice differentiable, parameterized on the interval [0,1], and non-degenerate (meaning the curve must never satisfy $$x'(t) = y'(t) = 0$$ for $$t \in \[0,1\]$$).
+Custom Curves **must** be twice differentiable, parameterized on the interval [0,1], and non-degenerate (meaning the curve must never satisfy $$x'(t) = y'(t) = 0$$ for $$t \in [0,1]$$).
 There is an optional `initialization()` method that can be overridden to do something on the creation of the curve.
 For example, the BezierCurve class stores the end tangent at this time.
 

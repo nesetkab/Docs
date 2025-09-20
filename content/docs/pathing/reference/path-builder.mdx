@@ -3,39 +3,31 @@ title: Path Builder
 description: Using the PathBuilder
 ---
 
-
-Want to make your robot follow a smooth, custom path? The `PathBuilder` in Pedro Pathing is your go-to tool for chaining together curves and controlling how your robot turns along the way. It’s designed to be flexible, readable, and—most importantly—easy to use.
-
 ## What is PathBuilder?
 
-Think of `PathBuilder` as a way to “draw” your robot’s route using Bézier curves, then tell it exactly how to turn as it moves. You can add as many path segments as you want, and tweak how the robot finishes each one. It’s all about making complex autos feel simple.
+The `PathBuilder` is a method for combining multiple paths into a single motion of independent or dependent interpolations and decelerations. It allows you to add paths, change how they interact with other paths in the chain, or their movement. This can be through local interpolation—interpolation over a specific path; global interpolation—interpolation over the entire pathchain; local deceleration—deceleration over a path; or global deceleration—deceleration over the path completion of the pathchain. The PathBuilder is able to be transformed into a PathChain with the `.build();` line. All headings are in **radians**—use `Math.toRadians(degrees)` if you’re starting with degrees.
 
-## How do I use it?
+## Usage
 
-Here’s a classic example. Let’s say you want your robot to go from a scoring position to a pickup, then back again, turning smoothly as it moves:
+Let’s say you want your robot to go from a scoring position to a pickup, then back again, turning smoothly as it moves from one heading to another. Let's assume that all of our poses are defined:
 
 ```java
-path = follower.pathBuilder()
-    .addPath(new BezierLine(new Point(scorePose), new Point(pickup1Pose)))
+pathChain = follower.pathBuilder()
+    .addPath(new BezierLine(scorePose, pickup1Pose))
     .setLinearHeadingInterpolation(scorePose.getHeading(), pickup1Pose.getHeading())
-    .addPath(new BezierLine(new Point(pickup1Pose), new Point(scorePose)))
+    .addPath(new BezierLine(pickup1Pose, scorePose))
     .setLinearHeadingInterpolation(pickup1Pose.getHeading(), scorePose.getHeading())
     .build();
 
-follower.followPath(path);
+follower.followPath(pathChain);
 ```
 
-## What can I do with it?
+## Methods
 
-- **addPath(path):** Add a Bézier curve or other curve to your chain.
+- **addPath(path):** Add a path or curve to your chain.
 - **setHeadingInterpolation(HeadingInterpolator):** Control the robot's heading while following paths. (See [Interpolation](/docs/pathing/reference/interpolation)) 
-- **setBrakingStrength(double):** Control your deceleration (See [Deceleration](/docs/pathing/reference/deceleration))
+- **setBrakingStrength(double):** Control deceleration (See [Deceleration](/docs/pathing/reference/deceleration))
 - **setTValueConstraint(double):** Control when each path is considered complete (See [Path Constraints](/docs/pathing/reference/constraints) for more on timing.)
-- **build():** Finish up and get your path ready to follow.
-
-## Pro Tips
-
-- All headings are in **radians**—don’t forget to use `Math.toRadians(degrees)` if you’re starting with degrees!
-- You can chain as many `addPath` and heading methods as you want. Build something wild.
+- **build():** Convert PathBuilder -> PathChain
 
 Curious how Pedro actually follows these paths? Dive into the [Drive Vector Algorithm](/docs/pathing/reference/drive-vector-algorithm) for the details.
