@@ -2,6 +2,7 @@
   "pages": [
     "constants",
     "auto",
-    "teleop"
+    "teleop",
+    "apriltags"
   ]
 }
