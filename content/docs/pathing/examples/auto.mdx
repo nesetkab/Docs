@@ -58,6 +58,9 @@ There are also constraints which you can add to modify how your robot follows a 
 To understand how heading interporlation work, navigate to [Interpolation](/docs/pathing/reference/interpolation).
 
 ```java title="ExampleAuto.java"
+private Path scorePreload;
+private PathChain grabPickup1, scorePickup1, grabPickup2, scorePickup2, grabPickup3, scorePickup3;
+
 public void buildPaths() {
     /* This is our scorePreload path. We are using a BezierLine, which is a straight line. */
     scorePreload = new Path(new BezierLine(startPose, scorePose));
@@ -233,7 +236,6 @@ The initialization phase sets up our paths and timers, while the loop ensures co
 
 
         follower = Constants.createFollower(hardwareMap);
-        createPoses();
         buildPaths();
         follower.setStartingPose(startPose);
 
