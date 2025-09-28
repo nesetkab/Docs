@@ -7,7 +7,7 @@ description: A localizer that uses the goBILDA Pinpoint Odometry Computer
   Ensure that two odometry pods are connected: one that is parallel to the length
   of your chassis (forward) and another that is perpendicular to your chassis length (lateral). These should be plugged 
   into the pinpoint (forward goes to port y and lateral to port x). The pinpoint should be connected 
-  to a REV Hub through an I2C cable (not to port 0 beacuse the IMU is there).
+  to a REV Hub through an I2C cable (not to port 0 because the IMU is there).
 </Callout>
 
 ## Setup
@@ -70,10 +70,10 @@ To reverse an encoder, add one of the following to `PinpointConstants`:
 ```
 
 ### Yaw Scaler
-If you want to use a yaw scaler, you can set the yaw scalar by doing `yawScalar` in `PinpointConstants` and inputing
+If you want to use a yaw scaler, you can set the yaw scalar by doing `yawScalar` in `PinpointConstants` and inputting
 your yaw scalar.
 
-NOTE: The yaw scalar overrides calibration done by GoBilda, and it is reccomended that you dont edit this unless
+NOTE: The yaw scalar overrides calibration done by GoBilda, and it is recommended that you don't edit this unless
 there is a reason to change it.
 
 ## Testing the localizer
