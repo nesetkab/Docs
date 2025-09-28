@@ -55,7 +55,7 @@ There are two major types of paths components: BezierCurves and BezierLines.
  - BezierLines are straight, and require 2 points. There are the start and end points.
 
 There are also constraints which you can add to modify how your robot follows a path. To understand all of them, navigate to [Constraints](/docs/pathing/reference/constraints).
-To understand how heading interporlation work, navigate to [Interpolation](/docs/pathing/reference/interpolation).
+To understand how heading interpolation works, navigate to [Interpolation](/docs/pathing/reference/interpolation).
 
 ```java title="ExampleAuto.java"
 private Path scorePreload;
@@ -109,11 +109,11 @@ public void buildPaths() {
 
 ## Step Four: Managing Path States 
 The switch is called continuously and runs the pathing, at certain points, it triggers the action state. The `pathState` variable in the switch statement
-will track the robot's movement throughout the autonomous. Everytime the switch changes case, it will reset the timer. The followPath() function sets the follower to run 
+will track the robot's movement throughout the autonomous. Every time the switch changes case, it will reset the timer. The followPath() function sets the follower to run 
 the specific path, but does NOT wait for it to finish before moving on. Rather, the robot will transition between path states based on a specified condition in the `if statement` 
 (known as a Finite State Machine, or FSM). 
 
-Below is an example state manager with explainations on what each case does, and how to modify it to fit your own routine.
+Below is an example state manager with explanations on what each case does, and how to modify it to fit your own routine.
 
 ```java title="ExampleAuto.java"
 public void autonomousPathUpdate() {
@@ -207,7 +207,7 @@ public void setPathState(int pState) {
 ```
 
 
-## Step Five: Init and Loop Methords:
+## Step Five: Init and Loop Methods:
 The initialization phase sets up our paths and timers, while the loop ensures continuous updates during autonomous.
 
 ```java title="ExampleAuto.java"
