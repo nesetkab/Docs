@@ -1,12 +1,13 @@
 {
   "pages": [
-    "path-builder",
     "interpolation",
     "deceleration",
     "constraints",
+    "coordinates",
+    "path-builder",
     "pathcomplete",
-    "callbacks",
     "beziercurves",
-    "drive-vector-algorithm"
+    "drive-vector-algorithm",
+    "callbacks"
   ]
 }
