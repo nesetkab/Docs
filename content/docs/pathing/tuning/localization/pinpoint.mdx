@@ -5,12 +5,13 @@ description: A localizer that uses the goBILDA Pinpoint Odometry Computer
 
 <Callout title="Prerequisites" type="info">
   Ensure that two odometry pods are connected: one that is parallel to the length
-  of your chassis (forward) and another that is perpendicular to your chassis length (lateral). These should be plugged 
-  into the pinpoint (forward goes to port x and lateral to port y). The pinpoint should be connected 
+  of your chassis (forward) and another that is perpendicular to your chassis length (lateral). These should be plugged
+  into the pinpoint (forward goes to port x and lateral to port y). The pinpoint should be connected
   to a REV Hub through an I2C cable (not to port 0 because the IMU is there).
 </Callout>
 
 ## Setup
+
 In `Constants.java`, add an instance of `PinpointConstants`. Make sure to replace the pinpoint hardware map name
 with the actual name.
 
@@ -40,14 +41,24 @@ You must also set your odometry pod offsets, which is where they are
 relative to your robot's center of rotation. You can use the diagram below
 to find them. **Offsets are in inches.**
 
-![Two Wheel Odometry Pod Offset Diagram](/docs/odometry.png)
+<img
+  className="inline-block dark:hidden"
+  src="/docs/odometry-light.png"
+  alt="Odometry Pod Offset Diagram"
+/>
+
+<img
+  className="hidden dark:inline-block"
+  src="/docs/odometry-dark.png"
+  alt="Odometry Pod Offset Diagram"
+/>
 
 Once you have found your offsets, add them to your localizer constants by
 using `.forwardPodY()` and `.strafePodX()`.
 
 ### Encoder Resolution
 
-By default, the encoder resolution is set to `GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD`. If you are 
+By default, the encoder resolution is set to `GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD`. If you are
 using a custom odometry pod, go back to your localizerConstants variable and replace `.encoderResolution()` with
 `.customEncoderResolution()` and input your encoder resolution.
 
@@ -70,6 +81,7 @@ To reverse an encoder, add one of the following to `PinpointConstants`:
 ```
 
 ### Yaw Scaler
+
 If you want to use a yaw scaler, you can set the yaw scalar by doing `yawScalar` in `PinpointConstants` and inputting
 your yaw scalar.
 
