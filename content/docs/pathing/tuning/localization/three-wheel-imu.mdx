@@ -7,13 +7,14 @@ import { Callout } from 'fumadocs-ui/components/callout'
 
 <Callout title="Prerequisites" type="info">
   Ensure that three odometry pods are connected: two that are parallel to the length
-  of your chassis and another that is perpendicular to your chassis length. These should be plugged 
+  of your chassis and another that is perpendicular to your chassis length. These should be plugged
   into ports that have motors on them preferably. Due to technical limitations on REV hubs, encoder ports
   0 and 3 are the fastest and are recommended for the two parallel pods.
 </Callout>
 
 ## Setup
-In `Constants.java`, add an instance of `ThreeWheelIMUConstants`. Make sure to replace the hardware map names 
+
+In `Constants.java`, add an instance of `ThreeWheelIMUConstants`. Make sure to replace the hardware map names
 with the actual names of the motor port they are plugged into. You must also set the IMU orientation to match the orientation of your Control Hub.
 
 ```java title="Constants.java"
@@ -49,7 +50,17 @@ You must also set your odometry pod offsets, which is where they are
 relative to your robot's center of rotation. You can use the diagram below
 to find them. **Offsets are in inches.**
 
-![Three Wheel Odometry Pod Offset Diagram](/docs/odometry.png)
+<img
+  className="inline-block dark:hidden"
+  src="/docs/odometry-light.png"
+  alt="Odometry Pod Offset Diagram"
+/>
+
+<img
+  className="hidden dark:inline-block"
+  src="/docs/odometry-dark.png"
+  alt="Odometry Pod Offset Diagram"
+/>
 
 Once you have found your offsets, add them to your localizer constants by
 using `.leftPodY()`, `.rightPodY()` and `.strafePodX()`.
@@ -98,7 +109,7 @@ Add the multiplier to your `ThreeWheelIMUConstants` by adding the following.
 ```
 
 <Callout title="Tip" type="info">
-  It is recommended that you run these tests multiple times and average the results, 
+  It is recommended that you run these tests multiple times and average the results,
   as it can result in more accurate localization.
 </Callout>
 
@@ -118,7 +129,7 @@ Lastly, add the multiplier to `ThreeWheelIMUConstants` by adding the following l
 ## Turn Tuner
 
 The turn tuner is similar to both the forward tuner and lateral tuner, except it is
-rotational. Place the robot so it aligns to a fixed reference point (e.g., edge of a field tile). 
+rotational. Place the robot so it aligns to a fixed reference point (e.g., edge of a field tile).
 In the tuning OpMode, under localization, select and start the
 lateral tuner. Rotate the robot **counterclockwise one full rotation**. As
 with the previous tuners, this amount is configurable.
